@@ -10,7 +10,7 @@ type
   Config = ref object
     ##[Configuration properties.
     ]##
-    current_version: Version  ## Managed "current" version of target.
+    currentVersion: Version  ## Managed "current" version of target.
     files: seq[FileConfig]  ## Rule section per files.
   FileConfig = ref object
     ##[File base rule configuration.
@@ -39,7 +39,7 @@ proc parseConfig(table: TomlTableRef): Config =
   ]##
   result = Config()
   # TODO: Raise human-readable exception.
-  result.current_version = parseVersion(table["current_version"].getStr)
+  result.currentVersion = parseVersion(table["current_version"].getStr)
   result.files = newSeq[FileConfig]()
   for fileToml in table["files"].getElems:
     result.files.add(parseFileConfig(fileToml.getTable))

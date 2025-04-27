@@ -41,7 +41,7 @@ suite "Test for parseConfig":
   test "Use current .age.toml":
     let table = parseFile("../.age.toml")
     let conf = parseConfig(table.getTable)
-    check(conf.current_version == parseVersion("0.7.0"))
+    check(conf.currentVersion == parseVersion("0.7.0"))
     check(conf.files.len == 6)
 
   test "Invalid version":
