@@ -5,7 +5,7 @@ import
 import
   cligen
 import
-  ./age/consts
+  ./age/[cli, consts]
 
 proc cli(version: bool = false, args: seq[string]): int =
   result = 1
@@ -15,4 +15,12 @@ proc cli(version: bool = false, args: seq[string]): int =
     return
 
 when isMainModule:
-  dispatch cli
+  dispatchMulti(
+    [info],
+    [update],
+    [major],
+    [minor],
+    [patch],
+    [init],
+    [help],
+  )
