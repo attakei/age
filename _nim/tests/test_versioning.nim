@@ -1,9 +1,6 @@
-import
-  unittest
-import
-  semver
-import
-  age/versioning
+import unittest
+import semver
+import age/versioning
 
 suite "Version.upMajor":
   test "Force change major version":

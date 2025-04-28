@@ -1,15 +1,15 @@
-import
-  unittest
-include
-  age/config
+import unittest
+include age/config
 
 suite "Test for parseFileConfig":
   test "simple test":
-    let table = parsetoml.parseString("""
+    let table = parsetoml.parseString(
+      """
       path = "pyproject.toml"
       search = "version = \"{{current_version}}\""
       replace = "version = \"{{new_version}}\""
-    """)
+    """
+    )
     let conf = parseFileConfig(table.getTable)
     check(conf.path == "pyproject.toml".Path)
     check(conf.search == "version = \"{{current_version}}\"")
@@ -17,22 +17,26 @@ suite "Test for parseFileConfig":
     check(not conf.regex)
 
   test "use regexp search":
-    let table = parsetoml.parseString("""
+    let table = parsetoml.parseString(
+      """
       path = "pyproject.toml"
       search = "(.+)"
       replace = "version = \"{{new_version}}\""
       regex = true
-    """)
+    """
+    )
     let conf = parseFileConfig(table.getTable)
     check(conf.regex)
 
   test "use regexp search, but invalid":
-    let table = parsetoml.parseString("""
+    let table = parsetoml.parseString(
+      """
       path = "pyproject.toml"
       search = "(.+"
       replace = "version = \"{{new_version}}\""
       regex = true
-    """)
+    """
+    )
     expect ValueError:
       let conf = parseFileConfig(table.getTable)
 
@@ -45,8 +49,10 @@ suite "Test for parseConfig":
     check(conf.files.len == 6)
 
   test "Invalid version":
-    let table = parsetoml.parseString("""
+    let table = parsetoml.parseString(
+      """
       current_version = "dev"
-    """)
+    """
+    )
     expect ValueError:
       let conf = parseConfig(table.getTable)
