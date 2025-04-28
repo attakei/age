@@ -2,7 +2,7 @@
 ]##
 import
   std/[
-    asyncdispatch, asyncfile, hashes, logging, paths, re, strformat, strutils, tables,
+    asyncdispatch, asyncfile, hashes, logging, nre, paths, strformat, strutils, tables,
     times,
   ]
 import mustache, semver
@@ -92,7 +92,7 @@ proc run*(self: Engine): int =
       let replace = rule.replace.render(ctx)
       let search = rule.search.render(ctx)
       if rule.regex:
-        let regex = re(rule.search)
+        let regex = re(search)
         content = content.replace(regex, replace)
       else:
         content = content.replace(search, replace)
