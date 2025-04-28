@@ -1,6 +1,6 @@
 ##[CLI subcommand works.
 ]##
-import std/tables
+import std/[logging, tables]
 import semver
 import ./[config, engine, versioning]
 
@@ -10,6 +10,7 @@ proc info*(): int =
 
 proc update*(args: seq[string]): int =
   ## Update target specified version.
+  debug("Call 'update' command.")
   result = 1
   let conf = autoConfig()
   let nextVersion = parseVersion(args[0])
@@ -18,6 +19,7 @@ proc update*(args: seq[string]): int =
 
 proc major*(): int =
   ## Update target for "major" level updated version.
+  debug("Call 'major' command.")
   result = 1
   let conf = autoConfig()
   let engine = newEngine(conf, conf.currentVersion.newMajorVersion)
@@ -25,6 +27,7 @@ proc major*(): int =
 
 proc minor*(): int =
   ## Update target for "minor" level updated version.
+  debug("Call 'minor' command.")
   result = 1
   let conf = autoConfig()
   let engine = newEngine(conf, conf.currentVersion.newMinorVersion)
@@ -32,6 +35,7 @@ proc minor*(): int =
 
 proc patch*(): int =
   ## Update target for "patch" level updated version.
+  debug("Call 'patch' command.")
   result = 1
   let conf = autoConfig()
   let engine = newEngine(conf, conf.currentVersion.newPatchVersion)
