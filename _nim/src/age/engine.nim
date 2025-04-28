@@ -46,6 +46,10 @@ proc castValue(value: DateTime): Value =
   newValue["date"] = Value(kind: vkString, vString: value.format("yyyy-MM-dd"))
   result = Value(kind: vkTable, vTable: newValue)
 
+# --
+# Methods
+# --
+
 proc registerRule(self: var Engine, target: Path, rule: Rule) =
   ##[Append new rule definition.
 
@@ -91,6 +95,10 @@ proc run*(self: Engine): int =
       let file = openAsync(target.string, fmWrite)
       waitFor(file.write(content))
       file.close()
+
+# --
+# Constructors
+# --
 
 proc newEngine*(currentVersion: Version, nextVersion: Version): Engine =
   ##[Create new instance of engine.
