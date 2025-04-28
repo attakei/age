@@ -1,24 +1,24 @@
 ##[Configuration manager.
 ]##
 import
-  std/[paths, re, tables]
+  std/[os, paths, re, tables]
 import
   parsetoml, semver
 
 
 type
-  Config = ref object
+  Config* = ref object
     ##[Configuration properties.
     ]##
-    currentVersion: Version  ## Managed "current" version of target.
-    files: seq[FileConfig]  ## Rule section per files.
-  FileConfig = ref object
+    currentVersion*: Version  ## Managed "current" version of target.
+    files*: seq[FileConfig]  ## Rule section per files.
+  FileConfig* = ref object
     ##[File base rule configuration.
     ]##
-    path: Path  ## Filepath of target to replace.
-    search: string  ## Search text to run procs.
-    replace: string  ## Replacement text to run procs.
-    regex: bool  ## Flag to use regular expression for search.
+    path*: Path  ## Filepath of target to replace.
+    search*: string  ## Search text to run procs.
+    replace*: string  ## Replacement text to run procs.
+    regex*: bool  ## Flag to use regular expression for search.
 
 
 proc parseFileConfig(table: TomlTableRef): FileConfig =
