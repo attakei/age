@@ -40,8 +40,10 @@ proc parseConfig(table: TomlTableRef): Config =
   for fileToml in table["files"].getElems:
     result.files.add(parseFileConfig(fileToml.getTable))
 
-proc parseConfig*(filePath: string): Config =
-  let toml = parseFile(filePath)
+proc parseConfig*(filePath: string, route: seq[string]): Config =
+  var toml = parseFile(filePath)
+  for r in route:
+    toml = toml[r]
   result = parseConfig(toml.getTable)
   block:
     let forConfig = FileConfig()
@@ -53,9 +55,14 @@ proc parseConfig*(filePath: string): Config =
 proc autoConfig*(): Config =
   ##[Resolve valid config path and parse config.
   ]##
-  let candicates = [paths.getCurrentDir() / Path(".age.toml")]
+  let candicates =
+    @[
+      (paths.getCurrentDir() / Path(".age.toml"), @[]),
+      (paths.getCurrentDir() / Path("pyproject.toml"), @["tool", "age"]),
+      (paths.getCurrentDir() / Path("Cargo.toml"), @["package", "metadata", "age"]),
+    ]
   for c in candicates:
-    if not fileExists(c.string):
+    if not fileExists(c[0].string):
       continue
-    return parseConfig(c.string)
+    return parseConfig(c[0].string, c[1])
   raise newException(LoadError, "Config file is not found.")
