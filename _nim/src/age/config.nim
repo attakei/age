@@ -43,6 +43,12 @@ proc parseConfig(table: TomlTableRef): Config =
 proc parseConfig*(filePath: string): Config =
   let toml = parseFile(filePath)
   result = parseConfig(toml.getTable)
+  block:
+    let forConfig = FileConfig()
+    forConfig.path = filePath.Path
+    forConfig.search = "current_version = \"{{current_version}}\""
+    forConfig.replace = "current_version = \"{{new_version}}\""
+    result.files.insert(forConfig, 0)
 
 proc autoConfig*(): Config =
   ##[Resolve valid config path and parse config.
