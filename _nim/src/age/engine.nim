@@ -68,6 +68,7 @@ proc createTemplateContext(self: Engine): Context =
   result = newContext()
   result["current_version"] = self.currentVersion
   result["new_version"] = self.nextVersion
+  result["now"] = self.runningDatetime
 
 proc run*(self: Engine): int =
   ##[Works main procedure to edit targets.
