@@ -77,7 +77,7 @@ proc createTemplateContext(self: Engine): Context =
 proc run*(self: Engine): int =
   ##[Works main procedure to edit targets.
   ]##
-  result = 0
+  result = 1
   info(fmt"Updating v{self.currentVersion} -> v{self.nextVersion}")
   info(fmt"Apply {self.rules.len} rules.")
   for target, rules in self.rules.pairs:
@@ -100,6 +100,8 @@ proc run*(self: Engine): int =
       let file = openAsync(target.string, fmWrite)
       waitFor(file.write(content))
       file.close()
+  echo "Updated!!"
+  result = 0
 
 # --
 # Constructors
