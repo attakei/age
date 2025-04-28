@@ -1,8 +1,11 @@
 ##[CLI subcommand works.
 ]##
 import
-  std/logging
-
+  std/tables
+import
+  semver
+import
+  ./[config, engine, versioning]
 
 proc info*(): int =
   ## Display config.
@@ -10,19 +13,33 @@ proc info*(): int =
 
 proc update*(args: seq[string]): int =
   ## Update target specified version.
-  result = 0
+  result = 1
+  let conf = autoConfig()
+  let nextVersion = parseVersion(args[0])
+  let engine = newEngine(conf, nextVersion)
+  result = engine.run()
 
 proc major*(): int = 
   ## Update target for "major" level updated version.
-  result = 0
+  result = 1
+  let conf = autoConfig()
+  let engine = newEngine(conf, conf.currentVersion.newMajorVersion)
+  result = engine.run()
 
 proc minor*(): int = 
   ## Update target for "minor" level updated version.
-  result = 0
+  result = 1
+  let conf = autoConfig()
+  let engine = newEngine(conf, conf.currentVersion.newMinorVersion)
+  result = engine.run()
 
 proc patch*(): int = 
   ## Update target for "patch" level updated version.
-  result = 0
+  result = 1
+  let conf = autoConfig()
+  let engine = newEngine(conf, conf.currentVersion.newPatchVersion)
+  echo len(engine.rules)
+  result = engine.run()
 
 proc init*(): int = 
   ## Create configuration file.
