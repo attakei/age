@@ -19,6 +19,7 @@ type
     search*: string  ## Search text to run procs.
     replace*: string  ## Replacement text to run procs.
     regex*: bool  ## Flag to use regular expression for search.
+  LoadError* = object of Exception
 
 
 proc parseFileConfig(table: TomlTableRef): FileConfig =
@@ -43,3 +44,21 @@ proc parseConfig(table: TomlTableRef): Config =
   result.files = newSeq[FileConfig]()
   for fileToml in table["files"].getElems:
     result.files.add(parseFileConfig(fileToml.getTable))
+
+
+proc parseConfig*(filePath: string): Config =
+  let toml = parseFile(filePath)
+  result = parseConfig(toml.getTable)
+
+
+proc autoConfig*(): Config =
+  ##[Resolve valid config path and parse config.
+  ]##
+  let candicates = [
+    paths.getCurrentDir() / Path(".age.toml"),
+  ]
+  for c in candicates:
+    if not fileExists(c.string):
+      continue
+    return parseConfig(c.string)
+  raise newException(LoadError, "Config file is not found.")
