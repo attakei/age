@@ -43,6 +43,7 @@ proc castValue(value: Version): Value =
 proc castValue(value: DateTime): Value =
   # To render DateTime type to mustache template.
   let newValue = new(Table[string, Value])
+  # TODO: Add use cases
   newValue["date"] = Value(kind: vkString, vString: value.format("yyyy-MM-dd"))
   result = Value(kind: vkTable, vTable: newValue)
 
