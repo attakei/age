@@ -1,26 +1,22 @@
 ##[Configuration manager.
 ]##
-import
-  std/[os, paths, re, tables]
-import
-  parsetoml, semver
-
+import std/[os, paths, re, tables]
+import parsetoml, semver
 
 type
-  Config* = ref object
-    ##[Configuration properties.
+  Config* = ref object ##[Configuration properties.
     ]##
-    currentVersion*: Version  ## Managed "current" version of target.
-    files*: seq[FileConfig]  ## Rule section per files.
-  FileConfig* = ref object
-    ##[File base rule configuration.
-    ]##
-    path*: Path  ## Filepath of target to replace.
-    search*: string  ## Search text to run procs.
-    replace*: string  ## Replacement text to run procs.
-    regex*: bool  ## Flag to use regular expression for search.
-  LoadError* = object of Exception
+    currentVersion*: Version ## Managed "current" version of target.
+    files*: seq[FileConfig] ## Rule section per files.
 
+  FileConfig* = ref object ##[File base rule configuration.
+    ]##
+    path*: Path ## Filepath of target to replace.
+    search*: string ## Search text to run procs.
+    replace*: string ## Replacement text to run procs.
+    regex*: bool ## Flag to use regular expression for search.
+
+  LoadError* = object of Exception
 
 proc parseFileConfig(table: TomlTableRef): FileConfig =
   ##[Create FileConfig object from '[[files]]' section  of parsed toml file.
@@ -34,7 +30,6 @@ proc parseFileConfig(table: TomlTableRef): FileConfig =
     # TODO: Raise human-readable exception.
     let _ = re(result.search)
 
-
 proc parseConfig(table: TomlTableRef): Config =
   ##[Create coinfiguration object from parsed toml settings.
   ]##
@@ -45,18 +40,14 @@ proc parseConfig(table: TomlTableRef): Config =
   for fileToml in table["files"].getElems:
     result.files.add(parseFileConfig(fileToml.getTable))
 
-
 proc parseConfig*(filePath: string): Config =
   let toml = parseFile(filePath)
   result = parseConfig(toml.getTable)
 
-
 proc autoConfig*(): Config =
   ##[Resolve valid config path and parse config.
   ]##
-  let candicates = [
-    paths.getCurrentDir() / Path(".age.toml"),
-  ]
+  let candicates = [paths.getCurrentDir() / Path(".age.toml")]
   for c in candicates:
     if not fileExists(c.string):
       continue

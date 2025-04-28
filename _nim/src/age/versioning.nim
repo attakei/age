@@ -1,9 +1,7 @@
 ## Handler versioning.
 ##
 ## This module depends on that this project uses Semantic Versioning.
-import
-  semver
-
+import semver
 
 proc newMajorVersion*(ver: Version): Version =
   ## Create new version struct that is updated as "Major version up".

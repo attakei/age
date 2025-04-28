@@ -2,10 +2,8 @@
 ]##
 import
   std/[asyncdispatch, asyncfile, hashes, paths, re, strformat, strutils, tables, times]
-import
-  mustache, semver
-import
-  ./config
+import mustache, semver
+import ./config
 
 type
   Engine = ref object
@@ -13,10 +11,11 @@ type
 
     This is core object type to set settings and run main procedures.
     ]##
-    runningDatetime: DateTime  ## Running datetime
-    currentVersion: Version  ## Current version before running procs.
-    nextVersion: Version  ## Next version after running procs.
-    rules*: Table[Path, seq[Rule]]  ## Ruleset to replace targets.
+    runningDatetime: DateTime ## Running datetime
+    currentVersion: Version ## Current version before running procs.
+    nextVersion: Version ## Next version after running procs.
+    rules*: Table[Path, seq[Rule]] ## Ruleset to replace targets.
+
   Rule = ref object
     ##[Rule definition.
 
@@ -25,9 +24,9 @@ type
     - What and how does it find replace target.
     - What does it replace for.
     ]##
-    search: string  ## Searching token. It can set as template string.
-    replace: string  ## Replacement text. It can set as template string too.
-    regex: bool  ## Flag to run regular expression for searching.    
+    search: string ## Searching token. It can set as template string.
+    replace: string ## Replacement text. It can set as template string too.
+    regex: bool ## Flag to run regular expression for searching.    
 
 # --
 # Overloads
@@ -37,18 +36,15 @@ proc hash(x: Path): Hash =
   # To use Path type as key directly.
   return hash(x.string)
 
-
 proc castValue(value: Version): Value =
   # To render Version type to mustache template.
   result = Value(kind: vkString, vString: $value)
-
 
 proc castValue(value: DateTime): Value =
   # To render DateTime type to mustache template.
   let newValue = new(Table[string, Value])
   newValue["date"] = Value(kind: vkString, vString: value.format("yyyy-MM-dd"))
   result = Value(kind: vkTable, vTable: newValue)
-
 
 proc registerRule(self: var Engine, target: Path, rule: Rule) =
   ##[Append new rule definition.
@@ -62,14 +58,12 @@ proc registerRule(self: var Engine, target: Path, rule: Rule) =
     self.rules[target] = newSeq[Rule]()
   self.rules[target].add(rule)
 
-
 proc createTemplateContext(self: Engine): Context =
   ##[Retieve context(dataset) for updating targets.
   ]##
   result = newContext()
   result["current_version"] = self.currentVersion
   result["new_version"] = self.nextVersion
-
 
 proc run*(self: Engine): int =
   ##[Works main procedure to edit targets.
@@ -98,7 +92,6 @@ proc run*(self: Engine): int =
       waitFor(file.write(content))
       file.close()
 
-
 proc newEngine*(currentVersion: Version, nextVersion: Version): Engine =
   ##[Create new instance of engine.
   
@@ -113,9 +106,10 @@ proc newEngine*(currentVersion: Version, nextVersion: Version): Engine =
   result.runningDatetime = now()
   result.rules = initTable[Path, seq[Rule]]()
 
-
 proc newEngine*(config: Config, nextVersion: Version): Engine =
   result = newEngine(config.currentVersion, nextVersion)
   for fileConfig in config.files:
-    let rule = Rule(search: fileConfig.search, replace: fileConfig.replace, regex: fileConfig.regex)
+    let rule = Rule(
+      search: fileConfig.search, replace: fileConfig.replace, regex: fileConfig.regex
+    )
     result.registerRule(fileConfig.path, rule)

@@ -1,11 +1,8 @@
 ##[CLI subcommand works.
 ]##
-import
-  std/tables
-import
-  semver
-import
-  ./[config, engine, versioning]
+import std/tables
+import semver
+import ./[config, engine, versioning]
 
 proc info*(): int =
   ## Display config.
@@ -19,21 +16,21 @@ proc update*(args: seq[string]): int =
   let engine = newEngine(conf, nextVersion)
   result = engine.run()
 
-proc major*(): int = 
+proc major*(): int =
   ## Update target for "major" level updated version.
   result = 1
   let conf = autoConfig()
   let engine = newEngine(conf, conf.currentVersion.newMajorVersion)
   result = engine.run()
 
-proc minor*(): int = 
+proc minor*(): int =
   ## Update target for "minor" level updated version.
   result = 1
   let conf = autoConfig()
   let engine = newEngine(conf, conf.currentVersion.newMinorVersion)
   result = engine.run()
 
-proc patch*(): int = 
+proc patch*(): int =
   ## Update target for "patch" level updated version.
   result = 1
   let conf = autoConfig()
@@ -41,10 +38,10 @@ proc patch*(): int =
   echo len(engine.rules)
   result = engine.run()
 
-proc init*(): int = 
+proc init*(): int =
   ## Create configuration file.
   result = 0
 
-proc help*(): int = 
+proc help*(): int =
   ## Print help message.
   result = 0
