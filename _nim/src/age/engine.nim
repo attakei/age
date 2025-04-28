@@ -1,7 +1,10 @@
 ##[Core engine to convert files.
 ]##
 import
-  std/[asyncdispatch, asyncfile, hashes, logging, paths, re, strformat, strutils, tables, times]
+  std/[
+    asyncdispatch, asyncfile, hashes, logging, paths, re, strformat, strutils, tables,
+    times,
+  ]
 import mustache, semver
 import ./config
 
