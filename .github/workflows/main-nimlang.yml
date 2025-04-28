@@ -31,6 +31,10 @@ jobs:
           - '2.2.2'
     steps:
       - uses: 'actions/checkout@v4'
+      - name: 'Install libraries'
+        run: |
+          sudo apt update
+          sudo apt install -y libpcre3
       - name: 'Cache Nim resources'
         id: cache_nim
         uses: actions/cache@v4
