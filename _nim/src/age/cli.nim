@@ -2,11 +2,15 @@
 ]##
 import std/[logging, tables]
 import semver
-import ./[config, engine, versioning]
+import ./[config, engine, info, versioning]
 
 proc info*(): int =
   ## Display config.
-  result = 0
+  debug("Call 'info' command.")
+  result = 1
+  let conf = autoConfig()
+  let workspace = newWorkspace(conf[0], conf[1], conf[2])
+  result = workspace.displayInfo()
 
 proc update*(args: seq[string]): int =
   ## Update target specified version.
