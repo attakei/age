@@ -1,8 +1,8 @@
 ##[CLI subcommand works.
 ]##
-import std/[logging, tables]
+import std/[logging, paths, sequtils, tables]
 import semver
-import ./[config, engine, info, versioning]
+import ./[config, engine, info, init, versioning]
 
 proc info*(): int =
   ## Display config.
@@ -46,6 +46,9 @@ proc patch*(): int =
   echo len(engine.rules)
   result = engine.run()
 
-proc init*(): int =
+proc init*(preset: seq[string] = @[], args: seq[string]): int =
   ## Create configuration file.
-  result = 0
+  debug("Call 'init' command.")
+  result = 1
+  let presets = concat(preset, args)
+  result = createConfig(paths.getCurrentDir() / ".age.toml".Path, presets)
