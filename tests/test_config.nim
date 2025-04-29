@@ -43,7 +43,7 @@ suite "Test for parseFileConfig":
 suite "Test for parseConfig":
   # TODO: Change checks when Nim codebase is mainstream.
   test "Use current .age.toml":
-    let table = parseFile("../.age.toml")
+    let table = parseFile(".age.toml") # Ref to project root.
     let conf = parseConfig(table.getTable)
     check(conf.currentVersion == parseVersion("0.7.0"))
     check(conf.files.len == 6)
