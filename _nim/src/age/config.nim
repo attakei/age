@@ -52,7 +52,7 @@ proc parseConfig*(filePath: string, route: seq[string]): Config =
     forConfig.replace = "current_version = \"{{new_version}}\""
     result.files.insert(forConfig, 0)
 
-proc autoConfig*(): Config =
+proc autoConfig*(): tuple[obj: Config, path: Path] =
   ##[Resolve valid config path and parse config.
   ]##
   let candicates =
@@ -64,5 +64,6 @@ proc autoConfig*(): Config =
   for c in candicates:
     if not fileExists(c[0].string):
       continue
-    return parseConfig(c[0].string, c[1])
+    let config = parseConfig(c[0].string, c[1])
+    return (config, c[0])
   raise newException(LoadError, "Config file is not found.")

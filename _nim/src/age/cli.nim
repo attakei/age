@@ -14,7 +14,7 @@ proc update*(args: seq[string]): int =
   result = 1
   let conf = autoConfig()
   let nextVersion = parseVersion(args[0])
-  let engine = newEngine(conf, nextVersion)
+  let engine = newEngine(conf[0], nextVersion)
   result = engine.run()
 
 proc major*(): int =
@@ -22,7 +22,7 @@ proc major*(): int =
   debug("Call 'major' command.")
   result = 1
   let conf = autoConfig()
-  let engine = newEngine(conf, conf.currentVersion.newMajorVersion)
+  let engine = newEngine(conf[0], conf[0].currentVersion.newMajorVersion)
   result = engine.run()
 
 proc minor*(): int =
@@ -30,7 +30,7 @@ proc minor*(): int =
   debug("Call 'minor' command.")
   result = 1
   let conf = autoConfig()
-  let engine = newEngine(conf, conf.currentVersion.newMinorVersion)
+  let engine = newEngine(conf[0], conf[0].currentVersion.newMinorVersion)
   result = engine.run()
 
 proc patch*(): int =
@@ -38,7 +38,7 @@ proc patch*(): int =
   debug("Call 'patch' command.")
   result = 1
   let conf = autoConfig()
-  let engine = newEngine(conf, conf.currentVersion.newPatchVersion)
+  let engine = newEngine(conf[0], conf[0].currentVersion.newPatchVersion)
   echo len(engine.rules)
   result = engine.run()
 
