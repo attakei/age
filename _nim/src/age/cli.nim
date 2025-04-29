@@ -49,7 +49,3 @@ proc patch*(): int =
 proc init*(): int =
   ## Create configuration file.
   result = 0
-
-proc help*(): int =
-  ## Print help message.
-  result = 0

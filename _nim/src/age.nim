@@ -6,4 +6,4 @@ import ./age/[cli, consts]
 
 when isMainModule:
   clCfg.version = fmt"{NAME} v{VERSION}"
-  dispatchMulti([info], [update], [major], [minor], [patch], [init], [help])
+  dispatchMulti([info], [update], [major], [minor], [patch], [init])
