@@ -1,6 +1,6 @@
 ##[Configuration manager.
 ]##
-import std/[os, paths, re, tables]
+import std/[dirs, logging, os, paths, re, tables]
 import parsetoml, semver
 
 type
@@ -52,18 +52,29 @@ proc parseConfig*(filePath: string, route: seq[string]): Config =
     forConfig.replace = "current_version = \"{{new_version}}\""
     result.files.insert(forConfig, 0)
 
-proc autoConfig*(): tuple[obj: Config, path: Path] =
+proc autoConfig*(): tuple[obj: Config, path: Path, workDir: Path] =
   ##[Resolve valid config path and parse config.
   ]##
-  let candicates =
+  let fileCandicates =
     @[
-      (paths.getCurrentDir() / Path(".age.toml"), @[]),
-      (paths.getCurrentDir() / Path("pyproject.toml"), @["tool", "age"]),
-      (paths.getCurrentDir() / Path("Cargo.toml"), @["package", "metadata", "age"]),
+      (Path(".age.toml"), @[]),
+      (Path("pyproject.toml"), @["tool", "age"]),
+      (Path("Cargo.toml"), @["package", "metadata", "age"]),
     ]
-  for c in candicates:
-    if not fileExists(c[0].string):
-      continue
-    let config = parseConfig(c[0].string, c[1])
-    return (config, c[0])
+  var workDir = paths.getCurrentDir().Path
+  while true:
+    for c in fileCandicates:
+      let path = workDir / c[0]
+      if not fileExists(path.string):
+        continue
+      let config = parseConfig(path.string, c[1])
+      return (config, c[0], workDir)
+    if dirExists(workDir / ".git".Path):
+      debug("This may be project root.")
+      break
+    if isRootDir(workDir):
+      debug("THis is root directory of system.")
+      break
+    workDir = workDir.parentDir
+  stderr.writeLine("Workspace is not found.")
   raise newException(LoadError, "Config file is not found.")
