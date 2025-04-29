@@ -31,3 +31,6 @@ select = ["C90", "D", "E", "F", "I", "W"]
 
 [tool.ruff.lint.pydocstyle]
 convention = "pep257"
+
+[tool.pytest]
+testpaths = ["e2e"]

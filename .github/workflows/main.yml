@@ -1,4 +1,4 @@
-name: 'CI jobs'
+name: 'Run CI jobs'
 
 on:
   push:
@@ -14,35 +14,78 @@ jobs:
     runs-on: 'ubuntu-latest'
     steps:
       - uses: 'actions/checkout@v4'
-      - uses: 'Swatinem/rust-cache@v2'
-      - name: 'Setup toolchain'
-        run: rustup toolchain install nightly --allow-downgrade -c rustfmt
-      - name: 'Run formatter'
-        run: cargo +nightly fmt --all --check
-      - name: 'Run linter'
-        run: cargo clippy --workspace --all-targets --all-features --locked -- -Dwarnings
+      - uses: jdx/mise-action@v2
+      - name: 'Cache Nim resources'
+        id: cache_nim
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.choosenim
+            ~/.nimble
+          key: 'nimcaches_ubuntu-latest_${{ matrix.nim-version }}'
+      - uses: jiro4989/setup-nim-action@v2
+      - name: Set up workspace
+        run: |
+          uv sync --dev --all-extras
+          nimble install nph
+      - name: Lint by lefthook
+        run: |
+          lefthook run pre-commit --all-files
   test:
     needs: ['lint']
     runs-on: 'ubuntu-latest'
+    strategy:
+      matrix:
+        nim-version:
+          - '2.0.0'
+          - '2.0.14'
+          - '2.2.0'
+          - '2.2.2'
     steps:
       - uses: 'actions/checkout@v4'
-      - uses: 'Swatinem/rust-cache@v2'
-      - name: 'Run test'
-        run: cargo test --verbose
+      - name: 'Install libraries'
+        run: |
+          sudo apt update
+          sudo apt install -y libpcre3
+      - name: 'Cache Nim resources'
+        id: cache_nim
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.choosenim
+            ~/.nimble
+          key: 'nimcaches_ubuntu-latest_${{ matrix.nim-version }}'
+      - uses: jiro4989/setup-nim-action@v2
+        with:
+          nim-version: '${{ matrix.nim-version }}'
+      - name: 'Run unittests'
+        run: |
+          nimble test -Y
   e2e:
     needs: ['lint']
-    runs-on: 'ubuntu-latest'
+    runs-on: '${{ matrix.os }}'
+    strategy:
+      matrix:
+        os:
+          - ubuntu-latest
+          - windows-latest
+        nim-version:
+          - '2.0.0'
+          - '2.2.2'
     steps:
       - uses: 'actions/checkout@v4'
-      # Build target for pytest
-      - uses: 'Swatinem/rust-cache@v2'
-      - name: 'Build'
-        run: cargo build --verbose
-      # Run pytest
-      - uses: astral-sh/setup-uv@v3
-      - name: Configure venv
+      - name: 'Cache Nim resources'
+        id: cache_nim
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.choosenim
+            ~/.nimble
+          key: 'nimcaches_${{ matrix.os }}_${{ matrix.nim-version }}'
+      - uses: jiro4989/setup-nim-action@v2
+        with:
+          nim-version: '${{ matrix.nim-version }}'
+      - name: 'Build executable'
         run: |
-          uv sync --frozen --no-dev
-      - name: 'Run tests'
-        run: |
-          uv run pytest
+          nimble build -Y
+      # TODO: Write after implements
