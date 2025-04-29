@@ -8,8 +8,8 @@ const DISPLAY_TEMPLATE =
   """
 # Workspace
 
-- Root: {{ workspace_root|safe }}
-- File: {{ workspace_file|safe }}
+- Root: {{ workspace_root }}
+- File: {{ workspace_file }}
 
 # Version info
 
@@ -20,9 +20,8 @@ const DISPLAY_TEMPLATE =
 
 # Replace targets
 
-{% for f in files -%}
-- {{ f|safe }}
-{% endfor -%}
+{{#files}}- {{.}}
+{{/files}}
 """
 
 type Workspace = ref object
@@ -38,7 +37,7 @@ proc displayInfo*(self: Workspace): int =
   let ctx = newContext()
   ctx["workspace_root"] = self.root
   ctx["workspace_file"] = self.file
-  ctx["current_versoin"] = self.config.currentVersion
+  ctx["current_version"] = self.config.currentVersion
   ctx["next_major"] = self.config.currentVersion.newMajorVersion
   ctx["next_minor"] = self.config.currentVersion.newMinorVersion
   ctx["next_patch"] = self.config.currentVersion.newPatchVersion
