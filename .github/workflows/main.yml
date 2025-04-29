@@ -74,6 +74,11 @@ jobs:
           - '2.2.2'
     steps:
       - uses: 'actions/checkout@v4'
+      - name: 'Install libraries'
+        run: |
+          sudo apt update
+          sudo apt install -y libpcre3
+        if: ${{ matrix.os == 'ubuntu-latest' }}
       - name: 'Cache Nim resources'
         id: cache_nim
         uses: actions/cache@v4
@@ -82,10 +87,14 @@ jobs:
             ~/.choosenim
             ~/.nimble
           key: 'nimcaches_${{ matrix.os }}_${{ matrix.nim-version }}'
+      - uses: jdx/mise-action@v2
       - uses: jiro4989/setup-nim-action@v2
         with:
           nim-version: '${{ matrix.nim-version }}'
-      - name: 'Build executable'
+      - name: 'Configure workspace'
         run: |
           nimble build -Y
-      # TODO: Write after implements
+          uv sync --frozen
+      - name: 'Run tests'
+        run: |
+          uv run pytest
