@@ -1,6 +1,6 @@
 # age
 
-age is my bumpversion tool (for training Rust programming).
+age is my bumpversion tool.
 
 ![GitHub Tag](https://img.shields.io/github/v/tag/attakei/age-cli)
 [![CI jobs](https://github.com/attakei/age-cli/actions/workflows/main.yml/badge.svg)](https://github.com/attakei/age-cli/actions/workflows/main.yml)
