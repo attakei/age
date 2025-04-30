@@ -1,5 +1,18 @@
 # Changelog
 
+## v0.8.0 - 2025-04-30 (Asia/Tokyo)
+
+## Breaking changes
+
+- Remove 'help' and 'version' subcommands.
+  - Please use `--help` and `--version` options instead.
+- `now` renders object now.
+- Template syntax is changed from Jinja2-like to Mustache-like.
+
+## Misc
+
+- Change codebase from Rust to Nim.
+
 ## v0.7.0 - 2024-04-13 (JST)
 
 ### Features
