@@ -36,10 +36,10 @@ replace = """
 [[files]]
 path = "docs/usage/installation.rst"
 search = """
-           curl -L https://github.com/attakei/age/releases/download/v{{current_version}}/age-v{{current_version}}_macos_x86-64.zip | bsdtar x -
+           curl -L https://github.com/attakei/age/releases/download/v{{current_version}}/age-v{{current_version}}_macos_arm64.zip | bsdtar x -
 """
 replace = """
-           curl -L https://github.com/attakei/age/releases/download/v{{new_version}}/age-v{{new_version}}_macos_x86-64.zip | bsdtar x -
+           curl -L https://github.com/attakei/age/releases/download/v{{new_version}}/age-v{{new_version}}_macos_arm64.zip | bsdtar x -
 """
 
 [[files]]

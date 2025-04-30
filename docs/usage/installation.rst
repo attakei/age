@@ -24,7 +24,7 @@ You can download and use from GitHub Releases.
 
         .. code:: console
 
-           curl -L https://github.com/attakei/age/releases/download/v0.7.0/age-v0.7.0_macos_x86-64.zip | bsdtar x -
+           curl -L https://github.com/attakei/age/releases/download/v0.7.0/age-v0.7.0_macos_arm64.zip | bsdtar x -
            chmod +x age-v0.7.0/age
            cp age-v0.7.0/age /path/to/bin/
 
