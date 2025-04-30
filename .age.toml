@@ -1,7 +1,7 @@
 current_version = "0.7.0"
 
 [[files]]
-path = "Cargo.toml"
+path = "age.nimble"
 search = "version = \"{{current_version}}\""
 replace = "version = \"{{new_version}}\""
 
@@ -21,7 +21,7 @@ search = "# Changelog"
 replace = """
 # Changelog
 
-## v{{new_version}} - {{now|date}} (JST)
+## v{{new_version}} - {{now.date}} (JST)
 """
 
 [[files]]
