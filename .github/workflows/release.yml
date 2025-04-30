@@ -78,7 +78,7 @@ jobs:
           name: Release ${{ github.ref_name }}
           tag: ${{ github.ref }}
           prerelease: false
-  deploy-doc:
+  deploy-docs:
     if: ${{ github.event_name != 'workflow_dispatch' }}
     needs: [build]
     uses: './.github/workflows/deploy-docs.yml'
