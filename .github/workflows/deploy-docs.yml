@@ -18,10 +18,10 @@ jobs:
           uv sync --frozen --no-dev
       - name: Build doc
         run: |
-          uv run make -C doc dirhtml
+          uv run make -C docs dirhtml
       - name: Publish
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy doc/_build/dirhtml --project-name=${{ secrets.CLOUDFLARE_PAGES_NAME }} --branch=main
+          command: pages deploy docs/_build/dirhtml --project-name=${{ secrets.CLOUDFLARE_PAGES_NAME }} --branch=main

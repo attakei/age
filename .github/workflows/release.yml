@@ -81,5 +81,5 @@ jobs:
   deploy-doc:
     if: ${{ github.event_name != 'workflow_dispatch' }}
     needs: [build]
-    uses: './.github/workflows/deploy-doc.yml'
+    uses: './.github/workflows/deploy-docs.yml'
     secrets: inherit
