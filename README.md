@@ -13,7 +13,7 @@ This is faster bump-version tools inspired by bumpversion and inherits.
 ## Installation
 
 ```
-cargo install --git https://github.com/attakei/age-cli.git
+nimble install age
 ```
 
 There are pre-build binaries on [GitHub releases](https://github.com/attakei/age-cli/releases).
