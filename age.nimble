@@ -1,3 +1,5 @@
+import std/os
+
 # Package
 
 version = "0.7.0"
@@ -17,3 +19,23 @@ requires "cligen >= 1.5.0"
 requires "mustache >= 0.4.3"
 requires "parsetoml >= 0.7.2"
 requires "semver >= 1.2.0"
+
+# Extra tasks
+
+task bundle, "Bundle resources for distribution":
+  let
+    osName = getEnv("AGE_OS_NAME", "linux")
+    cpuName = getEnv("AGE_CPU_NAME", "x86-64")
+    binExt =
+      if osName == "windows":
+        ".exe"
+      else:
+        ""
+    bundleDir = binDir & DirSep & "age-v" & version & "_" & osName & "_" & cpuName
+  mkDir(bundleDir)
+  for b in bin:
+    let src = binDir & "/" & b & binExt
+    let dst = bundleDir & DirSep & b & binExt
+    cpFile(src, dst)
+  for f in @["LICENSE", "README.md"]:
+    cpFile(f, bundleDir & DirSep & f)
