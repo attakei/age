@@ -43,7 +43,6 @@ proc patch*(): int =
   result = 1
   let conf = autoConfig()
   let engine = newEngine(conf[0], conf[0].currentVersion.newPatchVersion)
-  echo len(engine.rules)
   result = engine.run()
 
 proc init*(preset: seq[string] = @[], args: seq[string]): int =
