@@ -59,6 +59,8 @@ This should be relative path of configuration file.
 Search target of file.
 This accepts multi-line text and using templating.
 
+This value supports template text. Please see :doc:`./templating`.
+
 ``files[].regex``
 ------------------
 
@@ -76,3 +78,5 @@ If it is ``true``, age search target using regex and replace text with captured 
 
 Replacement text for search target of file.
 This accepts multi-line text and using templating.
+
+This value supports template text. Please see :doc:`./templating`.
