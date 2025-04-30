@@ -2,8 +2,8 @@
 
 age is my bumpversion tool.
 
-[![GitHub Tag](https://img.shields.io/github/v/tag/attakei/age-cli)](https://github.com/attakei/age)
-[![CI jobs](https://github.com/attakei/age-cli/actions/workflows/main.yml/badge.svg)](https://github.com/attakei/age-cli/actions/workflows/main.yml)
+[![GitHub Tag](https://img.shields.io/github/v/tag/attakei/age)](https://github.com/attakei/age)
+[![CI jobs](https://github.com/attakei/age/actions/workflows/main.yml/badge.svg)](https://github.com/attakei/age/actions/workflows/main.yml)
 
 ## Overview
 
@@ -16,7 +16,7 @@ This is faster bump-version tools inspired by bumpversion and inherits.
 nimble install age
 ```
 
-There are pre-build binaries on [GitHub releases](https://github.com/attakei/age-cli/releases).
+There are pre-build binaries on [GitHub releases](https://github.com/attakei/age/releases).
 You can download and use it directly without Rust environment.
 
 ## Usage
@@ -63,7 +63,7 @@ List of replace target for update versioning.
 Age uses template-engine to search and replace targets.
 You can set context values into `files.search` and `files.replace`.
 
-If you want to know example, please see [.age.toml](https://github.com/attakei/age-cli/blob/main/.age.toml).
+If you want to know example, please see [.age.toml](https://github.com/attakei/age/blob/main/.age.toml).
 
 ### Context values.
 
