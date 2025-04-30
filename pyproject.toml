@@ -11,9 +11,14 @@ dependencies = [
     "myst-parser~=2.0.0",
     "piccolo-theme~=0.20.0",
     "sphinxcontrib-asciinema>=0.4.2",
+    "doc8>=1.1.2",
+    "ruff>=0.11.7",
 ]
 readme = "README.md"
 requires-python = ">= 3.11"
+
+[tool.doc8]
+max-line-length = 119
 
 [tool.uv]
 dev-dependencies = [
@@ -26,3 +31,6 @@ select = ["C90", "D", "E", "F", "I", "W"]
 
 [tool.ruff.lint.pydocstyle]
 convention = "pep257"
+
+[tool.pytest]
+testpaths = ["e2e"]

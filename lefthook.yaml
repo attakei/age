@@ -1,0 +1,17 @@
+# Important!
+#   This hooks require uv to
+
+pre-commit:
+  parallel: true
+  commands:
+    nph:
+      glob: '*.nim'
+      run: 'nph {staged_files}'
+      stage_fixed: true
+    ruff:
+      glob: '*.py'
+      run: 'uv run ruff format {staged_files}'
+      stage_fixed: true
+    doc8:
+      glob: '*.rst'
+      run: 'uv run doc8 {staged_files}'
