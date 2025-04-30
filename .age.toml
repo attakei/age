@@ -27,19 +27,19 @@ replace = """
 [[files]]
 path = "docs/usage/installation.rst"
 search = """
-           curl -L https://github.com/attakei/age-cli/releases/download/v{{current_version}}/age-v{{current_version}}_linux_x86-64.zip | bsdtar x -
+           curl -L https://github.com/attakei/age/releases/download/v{{current_version}}/age-v{{current_version}}_linux_x86-64.zip | bsdtar x -
 """
 replace = """
-           curl -L https://github.com/attakei/age-cli/releases/download/v{{new_version}}/age-v{{new_version}}_linux_x86-64.zip | bsdtar x -
+           curl -L https://github.com/attakei/age/releases/download/v{{new_version}}/age-v{{new_version}}_linux_x86-64.zip | bsdtar x -
 """
 
 [[files]]
 path = "docs/usage/installation.rst"
 search = """
-           curl -L https://github.com/attakei/age-cli/releases/download/v{{current_version}}/age-v{{current_version}}_macos_x86-64.zip | bsdtar x -
+           curl -L https://github.com/attakei/age/releases/download/v{{current_version}}/age-v{{current_version}}_macos_x86-64.zip | bsdtar x -
 """
 replace = """
-           curl -L https://github.com/attakei/age-cli/releases/download/v{{new_version}}/age-v{{new_version}}_macos_x86-64.zip | bsdtar x -
+           curl -L https://github.com/attakei/age/releases/download/v{{new_version}}/age-v{{new_version}}_macos_x86-64.zip | bsdtar x -
 """
 
 [[files]]
@@ -58,10 +58,10 @@ replace = """
 path = ".github/release-body.md"
 regex = true
 search = """
-- Changelog is https://github.com/attakei/age-cli/blob/v{{current_version}}/CHANGELOG.md
+- Changelog is https://github.com/attakei/age/blob/v{{current_version}}/CHANGELOG.md
 - Source changes is (.+)
 """
 replace = """
-- Changelog is https://github.com/attakei/age-cli/blob/v{{new_version}}/CHANGELOG.md
-- Source changes is https://github.com/attakei/age-cli/compare/v{{current_version}}...v{{new_version}}
+- Changelog is https://github.com/attakei/age/blob/v{{new_version}}/CHANGELOG.md
+- Source changes is https://github.com/attakei/age/compare/v{{current_version}}...v{{new_version}}
 """

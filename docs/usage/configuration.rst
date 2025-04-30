@@ -19,7 +19,7 @@ After install, you can get configuration file as ``.age.toml`` by running comman
 
    age init --preset python
 
-If you want to using sample, Please see `configuration file of project itself <https://github.com/attakei/age-cli/blob/main/.age.toml>`_.
+If you want to using sample, Please see `configuration file of project itself <https://github.com/attakei/age/blob/main/.age.toml>`_.
 
 Configuration values
 ====================
