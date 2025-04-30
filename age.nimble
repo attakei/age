@@ -24,14 +24,12 @@ requires "semver >= 1.2.0"
 
 task bundle, "Bundle resources for distribution":
   let
-    osName = getEnv("AGE_OS_NAME", "linux")
-    cpuName = getEnv("AGE_CPU_NAME", "x86-64")
     binExt =
-      if osName == "windows":
+      when defined(windows):
         ".exe"
       else:
         ""
-    bundleDir = binDir & DirSep & "age-v" & version & "_" & osName & "_" & cpuName
+    bundleDir = binDir & DirSep & "age-v" & version
   mkDir(bundleDir)
   for b in bin:
     let src = binDir & "/" & b & binExt

@@ -18,7 +18,8 @@ jobs:
   build:
     runs-on: ${{ matrix.vm }}
     env:
-      release_name: 'age-${{ inputs.version || github.ref_name }}_${{ matrix.os_name }}_${{ matrix.cpu_name }}'
+      package_name: 'age-${{ inputs.version || github.ref_name }}'
+      dist_name: 'age-${{ inputs.version || github.ref_name }}_${{ matrix.os_name }}_${{ matrix.cpu_name }}'
     strategy:
       matrix:
         include:
@@ -48,20 +49,17 @@ jobs:
         run: |
           nimble build -d:release -Y
           nimble bundle
-        env:
-          AGE_OS_NAME: ${{ matrix.os_name }}
-          AGE_CPU_NAME: ${{ matrix.cpu_name }}
       - name: 'Make archive'
         uses: thedoctor0/zip-release@master
         with:
           type: zip
           directory: 'dist'
-          path: '${{ env.release_name }}'
-          filename: '${{ env.release_name }}.zip'
+          path: '${{ env.package_name }}'
+          filename: '${{ env.dist_name }}.zip'
       - uses: actions/upload-artifact@v4
         with:
-          name: 'release-${{ env.release_name }}'
-          path: 'dist/${{ env.release_name }}.zip'
+          name: 'release-${{ env.dist_name }}'
+          path: 'dist/${{ env.dist_name }}.zip'
   release:
     if: ${{ github.event_name != 'workflow_dispatch' }}
     runs-on: ubuntu-latest
