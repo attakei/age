@@ -10,7 +10,7 @@ First setup
 After install, you can get configuration file as ``.age.toml`` by running command ``age init``.
 
 .. code-block:: console
-   :caption: Simple Rust project
+   :caption: Simple project
 
    age init
 

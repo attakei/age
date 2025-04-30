@@ -13,6 +13,7 @@ extensions = [
     "sphinx.ext.todo",
     "sphinx_design",
     "sphinxcontrib.asciinema",
+    "sphinxnotes.strike",
 ]
 templates_path = ["_templates"]
 exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
