@@ -21,7 +21,7 @@ search = "# Changelog"
 replace = """
 # Changelog
 
-## v{{new_version}} - {{now.date}} (JST)
+## v{{new_version}} - {{now.date}} (Asia/Tokyo)
 """
 
 [[files]]
