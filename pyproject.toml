@@ -13,6 +13,7 @@ dependencies = [
     "sphinxcontrib-asciinema>=0.4.2",
     "doc8>=1.1.2",
     "ruff>=0.11.7",
+    "sphinx-design>=0.6.1",
 ]
 readme = "README.md"
 requires-python = ">= 3.11"

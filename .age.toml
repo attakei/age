@@ -25,16 +25,32 @@ replace = """
 """
 
 [[files]]
-path = "doc/usage/installation.rst"
+path = "docs/usage/installation.rst"
 search = """
-   curl -L https://github.com/attakei/age-cli/releases/download/v{{current_version}}/age-v{{current_version}}_linux.zip | bsdtar x -
-   chmod +x age-v{{current_version}}/age
-   cp age-v{{current_version}}/age /path/to/bin/
+           curl -L https://github.com/attakei/age-cli/releases/download/v{{current_version}}/age-v{{current_version}}_linux_x86-64.zip | bsdtar x -
 """
 replace = """
-   curl -L https://github.com/attakei/age-cli/releases/download/v{{new_version}}/age-v{{new_version}}_linux.zip | bsdtar x -
-   chmod +x age-v{{new_version}}/age
-   cp age-v{{new_version}}/age /path/to/bin/
+           curl -L https://github.com/attakei/age-cli/releases/download/v{{new_version}}/age-v{{new_version}}_linux_x86-64.zip | bsdtar x -
+"""
+
+[[files]]
+path = "docs/usage/installation.rst"
+search = """
+           curl -L https://github.com/attakei/age-cli/releases/download/v{{current_version}}/age-v{{current_version}}_macos_x86-64.zip | bsdtar x -
+"""
+replace = """
+           curl -L https://github.com/attakei/age-cli/releases/download/v{{new_version}}/age-v{{new_version}}_macos_x86-64.zip | bsdtar x -
+"""
+
+[[files]]
+path = "docs/usage/installation.rst"
+search = """
+           chmod +x age-v{{current_version}}/age
+           cp age-v{{current_version}}/age /path/to/bin/
+"""
+replace = """
+           chmod +x age-v{{new_version}}/age
+           cp age-v{{new_version}}/age /path/to/bin/
 """
 
 # This file has other replace target, but currently not supported.
