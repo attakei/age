@@ -11,7 +11,7 @@ Home
    advanced/index
    changelog
 
-Age is faster bump-version implementation written by Rust-lang.
+Age is faster bump-version implementation written by Nim-lang.
 
 .. asciinema:: ./demo.cast
    :preload: 1
@@ -31,4 +31,6 @@ Motivation
 There are some reason that I develop it.
 
 * Bump version tool independent by programming language.
-* Management real product for myself to learn Rust.
+* :strike:`Management real product for myself to learn Rust`.
+
+  * Currently, it migrated into Nim codebase.

@@ -98,3 +98,15 @@ jobs:
       - name: 'Run tests'
         run: |
           uv run pytest
+  doctest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v3
+      - name: Configure venv
+        run: |
+          uv sync --frozen --no-dev
+      - name: Build doc
+        run: |
+          uv run make -C docs linkcheck
+          uv run make -C docs dirhtml

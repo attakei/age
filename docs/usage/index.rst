@@ -9,4 +9,5 @@ There are some steps to use age.
 
    installation
    configuration
+   templating
    commands

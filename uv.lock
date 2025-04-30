@@ -13,7 +13,9 @@ dependencies = [
     { name = "pytest" },
     { name = "ruff" },
     { name = "sphinx" },
+    { name = "sphinx-design" },
     { name = "sphinxcontrib-asciinema" },
+    { name = "sphinxnotes-strike" },
 ]
 
 [package.dev-dependencies]
@@ -30,7 +32,9 @@ requires-dist = [
     { name = "pytest", specifier = "~=8.1.1" },
     { name = "ruff", specifier = ">=0.11.7" },
     { name = "sphinx", specifier = "~=7.2.6" },
+    { name = "sphinx-design", specifier = ">=0.6.1" },
     { name = "sphinxcontrib-asciinema", specifier = ">=0.4.2" },
+    { name = "sphinxnotes-strike", specifier = ">=1.2.1" },
 ]
 
 [package.metadata.requires-dev]
@@ -592,6 +596,18 @@ wheels = [
 ]
 
 [[package]]
+name = "sphinx-design"
+version = "0.6.1"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "sphinx" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/2b/69/b34e0cb5336f09c6866d53b4a19d76c227cdec1bbc7ac4de63ca7d58c9c7/sphinx_design-0.6.1.tar.gz", hash = "sha256:b44eea3719386d04d765c1a8257caca2b3e6f8421d7b3a5e742c0fd45f84e632", size = 2193689 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/c6/43/65c0acbd8cc6f50195a3a1fc195c404988b15c67090e73c7a41a9f57d6bd/sphinx_design-0.6.1-py3-none-any.whl", hash = "sha256:b11f37db1a802a183d61b159d9a202314d4d2fe29c163437001324fe2f19549c", size = 2215338 },
+]
+
+[[package]]
 name = "sphinxcontrib-applehelp"
 version = "2.0.0"
 source = { registry = "https://pypi.org/simple" }
@@ -652,6 +668,18 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/3b/44/6716b257b0aa6bfd51a1b31665d1c205fb12cb5ad56de752dfa15657de2f/sphinxcontrib_serializinghtml-2.0.0.tar.gz", hash = "sha256:e9d912827f872c029017a53f0ef2180b327c3f7fd23c87229f7a8e8b70031d4d", size = 16080 }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/52/a7/d2782e4e3f77c8450f727ba74a8f12756d5ba823d81b941f1b04da9d033a/sphinxcontrib_serializinghtml-2.0.0-py3-none-any.whl", hash = "sha256:6e2cb0eef194e10c27ec0023bfeb25badbbb5868244cf5bc5bdc04e4464bf331", size = 92072 },
+]
+
+[[package]]
+name = "sphinxnotes-strike"
+version = "1.2.1"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "sphinx" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/0c/92/4d27ba45ee6e065f687c365576e6cbccbd656f1b15d2d22ea88eb93f8c72/sphinxnotes-strike-1.2.1.tar.gz", hash = "sha256:d51b5b8b60c62ba647abe9d5f32e78a9a4feddb48bf76aa77bbc4b6d5d968e70", size = 29117 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/3e/47/2cbf45f4c57efdfe54ff37730935392d3280825a17d01411f29f97a9616a/sphinxnotes_strike-1.2.1-py3-none-any.whl", hash = "sha256:f32213c1e7ee0d35278c614f7349f28ae44458a3f252d62ff5baeb0e3fbe118f", size = 3996 },
 ]
 
 [[package]]
