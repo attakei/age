@@ -6,7 +6,7 @@ import
     times,
   ]
 import mustache, semver
-import ./config
+import ./[config, templating]
 
 type
   Engine = ref object
@@ -43,13 +43,6 @@ proc castValue(value: Version): Value =
   # To render Version type to mustache template.
   result = Value(kind: vkString, vString: $value)
 
-proc castValue(value: DateTime): Value =
-  # To render DateTime type to mustache template.
-  let newValue = new(Table[string, Value])
-  # TODO: Add use cases
-  newValue["date"] = Value(kind: vkString, vString: value.format("yyyy-MM-dd"))
-  result = Value(kind: vkTable, vTable: newValue)
-
 # --
 # Methods
 # --
@@ -69,10 +62,9 @@ proc registerRule(self: var Engine, target: Path, rule: Rule) =
 proc createTemplateContext(self: Engine): Context =
   ##[Retieve context(dataset) for updating targets.
   ]##
-  result = newContext()
+  result = initContext(self.runningDatetime)
   result["current_version"] = self.currentVersion
   result["new_version"] = self.nextVersion
-  result["now"] = self.runningDatetime
 
 proc run*(self: Engine): int =
   ##[Works main procedure to edit targets.
