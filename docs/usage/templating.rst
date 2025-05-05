@@ -21,3 +21,35 @@ Next version text after running ``age``.
 -------
 
 Datetime text that ``age`` called.
+
+``nowFormat``
+-------------
+
+Formatted string of ``now``.
+
+* ``now.dateISO``: Date part of ISO 8601 Format.
+
+Lambdas
+=======
+
+Lambdas can use as template block.
+
+``sameLengthChars``
+-------------------
+
+Render strings repeated ``arg1`` as same length as ``arg2``.
+In block, ``arg1`` and ``arg2`` are joined by '@'.
+
+Example:
+
+.. code-block:: text
+
+    Example
+    {{#sameLengthChars}}=@Example{{/sameLengthChars}}
+
+Finally rendered:
+
+.. code-block:: text
+
+    Example
+    =======

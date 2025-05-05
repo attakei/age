@@ -3,8 +3,9 @@ include age/templating
 import std/unittest
 
 test "sameLengthCars":
-  check(sameLengthChars('#', "Hello world") == "###########")
-  check(sameLengthChars('=', "v0.1.0") == "======")
+  check(sameLengthChars("#", "Hello world") == "###########")
+  check(sameLengthChars("=", "v0.1.0") == "======")
+  check(sameLengthChars("^^", "v0.1.0") == "^^^^^^^^^^^^")
 
 test "initContext":
   let now = initDateTime(4, mMar, 2012, 5, 6, 7)
@@ -13,7 +14,7 @@ test "initContext":
   let tmpl =
     """
 {{version}}
-{{#sameLengthChars}}={{version}}{{/sameLengthChars}}
+{{#sameLengthChars}}=@{{version}}{{/sameLengthChars}}
 
 {{nowFormat.dateISO}}
 """

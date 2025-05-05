@@ -13,10 +13,10 @@ proc castValue(value: DateTime): Value =
 
 # Lambdas
 
-proc sameLengthChars(chr: char, base: string): string =
+proc sameLengthChars(src: string, base: string): string =
   ##[Retrieve strings repeated char as same length as base string.
   ]##
-  return chr.repeat(len(base))
+  return src.repeat(len(base))
 
 # Operation for context
 
@@ -34,7 +34,5 @@ proc initContext*(dt: DateTime): Context =
   result = newContext()
   result.setCurrentDateTime(dt)
   result["sameLengthChars"] = proc(s: string, c: Context): string =
-    let
-      chr = s[0]
-      base = s.render(c)[1 ..^ 1]
-    return sameLengthChars(chr, base)
+    let parts = s.render(c).split("@", 2)
+    return sameLengthChars(parts[0], parts[1])
