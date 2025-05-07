@@ -1,6 +1,8 @@
 ### GIGI version 0.2.1
 ### command with: python nim
 
+.task
+
 ### Python ###
 # Byte-compiled / optimized / DLL files
 __pycache__/

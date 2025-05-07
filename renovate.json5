@@ -4,6 +4,7 @@
     "config:recommended",
     ":dependencyDashboard",
     "github>attakei/workspace-configs//renovate/lefthook",
+    "github>attakei/workspace-configs//renovate/taskfie",
   ],
   "enabledManagers": [
     "github-actions",

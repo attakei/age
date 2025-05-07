@@ -1,0 +1,35 @@
+version: '3'
+
+includes:
+  docs:
+    taskfile: 'https://github.com/attakei/workspace-configs.git//projects/sphinx-doc/Taskfile.yaml?tag=v0.2.0'
+    vars:
+      RUN_PYTHON: 'uv run'
+      SPHINX_ROOT_DIR: 'docs'
+      SPHINX_SOURCE_DIR: ''
+      SPHINX_OUTPUT_DIR: '_build'
+      SPHINX_DEFAULT_BUILDER: 'dirhtml'
+
+tasks:
+  setup:
+    desc: 'Setup workspace'
+    cmds:
+      - 'nimble install -d'
+      - 'nimble install nph'
+      - 'uv sync --frozen'
+      - 'lefthook install'
+  verify:
+    desc: 'Verify environment by all procs'
+    cmds:
+      - 'lefthook run pre-commit --all-files'
+      - 'nimble test'
+      - 'uv run pytest'
+      - task: 'docs:build-linkcheck'
+      - task: 'docs:build-dirhtml'
+  release-*:
+    desc: 'Run release process'
+    vars:
+      LEVEL: '{{index .MATCH 0}}'
+    cmds:
+      - 'nimble run -- {{.LEVEL}}'
+      - 'uv sync'  # To write out as lock-file
