@@ -6,27 +6,27 @@ authors = [
     { name = "Kazuya Takei", email = "myself@attakei.net" }
 ]
 dependencies = [
-    "pytest~=8.1.1",
     "sphinx~=7.2.6",
     "myst-parser~=2.0.0",
     "piccolo-theme~=0.20.0",
     "sphinxcontrib-asciinema>=0.4.2",
-    "doc8>=1.1.2",
-    "ruff>=0.11.7",
     "sphinx-design>=0.6.1",
     "sphinxnotes-strike>=1.2.1",
 ]
 readme = "README.md"
 requires-python = ">= 3.11"
 
-[tool.doc8]
-max-line-length = 119
-
-[tool.uv]
-dev-dependencies = [
+[dependency-groups]
+dev = [
+    "doc8>=1.1.2",
     "esbonio~=0.16.4",
+    "pytest~=8.1.1",
+    "ruff>=0.11.7",
     "sphinx-autobuild~=2024.2.4",
 ]
+
+[tool.doc8]
+max-line-length = 119
 
 [tool.ruff.lint]
 select = ["C90", "D", "E", "F", "I", "W"]
