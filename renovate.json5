@@ -7,7 +7,7 @@
     "github>attakei/workspace-configs//renovate/taskfie",
   ],
   "enabledManagers": [
-    "python",
+    "pep621",
     "github-actions",
     "custom.jsonata"
   ],
