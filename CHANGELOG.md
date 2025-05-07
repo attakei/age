@@ -1,5 +1,26 @@
 # Changelog
 
+## v0.9.0 - 2025-05-08 (Asia/Tokyo)
+
+### Breaking changes
+
+- `now` renders full timestamp text in templating.
+
+### Features
+
+- Update templatings.
+  - Add `nowFormat` to render some fometted text of `now`.
+    - `nowFormat.dateISO` renders `YYYY-MM-DD` style string.
+  - Add `sameLengthChars` lambda recommended for writing underline.
+
+### Misc
+
+- Rename repository (`age-cli` -> `age`).
+- Remove description about Rust.
+- Use taskfile.
+- Use remote lefthook hooks.
+- Update dependency monitoring by Renovate.
+
 ## v0.8.0 - 2025-04-30 (Asia/Tokyo)
 
 ### Breaking changes
