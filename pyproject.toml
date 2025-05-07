@@ -5,6 +5,9 @@ description = "This is virtual project for testing and documentation."
 authors = [
     { name = "Kazuya Takei", email = "myself@attakei.net" }
 ]
+classifiers = [
+    "Private :: Do Not Upload",
+]
 dependencies = [
     "sphinx~=7.2.6",
     "myst-parser~=2.0.0",
