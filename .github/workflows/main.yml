@@ -9,6 +9,9 @@ on:
   pull_request:
   workflow_dispatch:
 
+env:
+  TASK_X_REMOTE_TASKFILES: 1
+
 jobs:
   lint:
     runs-on: 'ubuntu-latest'
@@ -26,8 +29,7 @@ jobs:
       - uses: jiro4989/setup-nim-action@v2
       - name: Set up workspace
         run: |
-          uv sync --dev --all-extras
-          nimble install nph
+          task --yes setup
       - name: Lint by lefthook
         run: |
           lefthook run pre-commit --all-files
@@ -102,11 +104,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: astral-sh/setup-uv@v6
+      - uses: jdx/mise-action@v2
       - name: Configure venv
         run: |
           uv sync --frozen --no-dev
-      - name: Build doc
+      - name: Build document
         run: |
-          uv run make -C docs linkcheck
-          uv run make -C docs dirhtml
+          task --yes docs:build-linkcheck docs:build-dirhtml
