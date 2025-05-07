@@ -4,7 +4,7 @@
     "config:recommended",
     ":dependencyDashboard",
     "github>attakei/workspace-configs//renovate/lefthook",
-    "github>attakei/workspace-configs//renovate/taskfie",
+    "github>attakei/workspace-configs//renovate/taskfile",
   ],
   "enabledManagers": [
     "pep621",
