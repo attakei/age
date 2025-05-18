@@ -57,6 +57,7 @@ proc autoConfig*(): tuple[obj: Config, path: Path, workDir: Path] =
   ]##
   let fileCandicates =
     @[
+      (Path("age.toml"), @[]),
       (Path(".age.toml"), @[]),
       (Path("pyproject.toml"), @["tool", "age"]),
       (Path("Cargo.toml"), @["package", "metadata", "age"]),
