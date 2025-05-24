@@ -1,5 +1,15 @@
 # Changelog
 
+## v0.10.0 - 2025-05-25 (Asia/Tokyo)
+
+### Features
+
+- Add support filename of configuration.
+
+### Misc
+
+- Update workspace.
+
 ## v0.9.0 - 2025-05-08 (Asia/Tokyo)
 
 ### Breaking changes
