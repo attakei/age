@@ -7,7 +7,7 @@ You need setup age's configuration on your project.
 First setup
 ===========
 
-After install, you can get configuration file as ``.age.toml`` by running command ``age init``.
+After install, you can get configuration file as ``.age.toml`` or ``age.toml`` by running command ``age init``.
 
 .. code-block:: console
    :caption: Simple project
