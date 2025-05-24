@@ -27,7 +27,7 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "myst-parser", specifier = "~=4.0.1" },
-    { name = "piccolo-theme", specifier = "~=0.20.0" },
+    { name = "piccolo-theme", specifier = "~=0.24.0" },
     { name = "sphinx", specifier = "~=7.2.6" },
     { name = "sphinx-design", specifier = ">=0.6.1" },
     { name = "sphinxcontrib-asciinema", specifier = ">=0.4.2" },
@@ -401,14 +401,14 @@ wheels = [
 
 [[package]]
 name = "piccolo-theme"
-version = "0.20.0"
+version = "0.24.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "sphinx" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/5a/37/2471bae712adfcff83b268c1a70acdaf9e9e62627711e4c058819650d158/piccolo_theme-0.20.0.tar.gz", hash = "sha256:fc8e90ffffe86753a549010ec10e0ab54ba3ef7adaea9a320e17e1885e6726b1", size = 412418, upload-time = "2024-03-07T17:05:07.217Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/6b/69/5f0e5c1c464940655c5373258ccd623ca838cc31f5b0fd9f91e918e3a12c/piccolo_theme-0.24.0.tar.gz", hash = "sha256:09cf70f4bb6dba4ebcd14966550c292339c11d931c9533221cd3dbffeb1d1bd9", size = 413034, upload-time = "2024-08-25T14:48:28.44Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/b0/12/e0973f38cf8c774deb49a37be246f6ad064423525cc1754cc49475293a6b/piccolo_theme-0.20.0-py3-none-any.whl", hash = "sha256:6b08c5376dd6b07b080bbd49f012ee9ba3548d8daf64f1b67f770e033bcd02f9", size = 410490, upload-time = "2024-03-07T17:05:05.078Z" },
+    { url = "https://files.pythonhosted.org/packages/6e/c7/671897010e89e268bd73a14672139ec92961c651b3085b050375344a2a32/piccolo_theme-0.24.0-py3-none-any.whl", hash = "sha256:6de69688ba87963857c11ddb0d98987b9a4814d508cce2d0ecc83e3680c9da12", size = 410840, upload-time = "2024-08-25T14:48:26.062Z" },
 ]
 
 [[package]]
