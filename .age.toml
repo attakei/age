@@ -53,6 +53,11 @@ replace = """
            cp age-v{{new_version}}/age /path/to/bin/
 """
 
+[[files]]
+path = "src/age/consts.nim"
+search = "  VERSION* = \"{{current_version}}\""
+replace = "  VERSION* = \"{{new_version}}\""
+
 # This file has other replace target, but currently not supported.
 [[files]]
 path = ".github/release-body.md"
