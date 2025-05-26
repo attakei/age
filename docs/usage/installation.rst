@@ -36,6 +36,45 @@ You can download and use from GitHub Releases.
            chmod +x age-v0.10.0/age
            cp age-v0.10.0/age /path/to/bin/
 
+Using aqua
+----------
+
+`aqua <https://aquaproj.github.io/>`_ is CLI version manager for cross-platform.
+
+We provide custom registry for aqua.
+You can install by using registry.
+
+.. code-block:: yaml
+    :name: aqua.yaml
+
+    registries:
+    - type: standard
+      ref: v4.371.2 # renovate: depName=aquaproj/aqua-registry
+    # Add
+    - name: attakei/age
+      type: github_content
+      repo_owner: attakei
+      repo_name: age
+      ref: main
+      path: registry.yaml
+
+.. code-block:: yaml
+    :name: aqua-policy.yaml
+
+    registries:
+      - type: standard
+        ref: semver(">= 3.0.0")
+      # Add
+      - name: attakei/age
+        type: github_content
+        repo_owner: attakei
+        repo_name: age
+        ref: main
+        path: registry.yaml
+    packages:
+      - registry: standard
+      - registry: attakei/age
+
 Using Nimble
 ------------
 

@@ -15,7 +15,9 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
-      - uses: jdx/mise-action@v2
+      - uses: aquaproj/aqua-installer@9ebf656952a20c45a5d66606f083ff34f58b8ce0 # v4.0.0
+        with:
+          aqua_version: v2.43.1
       - name: Configure venv
         run: |
           uv sync --frozen --no-dev

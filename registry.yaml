@@ -1,0 +1,46 @@
+packages:
+  - type: github_release
+    repo_owner: attakei
+    repo_name: age
+    description: Alt bumpversion
+    version_constraint: "false"
+    version_overrides:
+      - version_constraint: Version == "v0.1.0"
+        asset: gazer-{{.Version}}_{{.OS}}.{{.Format}}
+        format: zip
+        files:
+          - name: age
+            src: gazer-{{.Version}}_{{.OS}}/gazer
+        replacements:
+          darwin: macosx
+        supported_envs:
+          - darwin
+          - windows
+          - amd64
+      - version_constraint: semver("<= 0.7.0")
+        asset: age-{{.Version}}_{{.OS}}.{{.Format}}
+        format: zip
+        files:
+          - name: age
+            src: age-{{.Version}}_{{.OS}}/age
+        replacements:
+          darwin: macosx
+        supported_envs:
+          - darwin
+          - windows
+          - amd64
+      - version_constraint: "true"
+        asset: age-{{.Version}}_{{.OS}}_x86-64.{{.Format}}
+        files:
+          - name: age
+            src: age-{{.Version}}/age
+        format: zip
+        replacements:
+          darwin: macos
+        overrides:
+          - goos: darwin
+            asset: age-{{.Version}}_{{.OS}}_{{.Arch}}.{{.Format}}
+        supported_envs:
+          - linux/amd64
+          - darwin/arm64
+          - windows/amd64

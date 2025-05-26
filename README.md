@@ -16,8 +16,10 @@ This is faster bump-version tools inspired by bumpversion and inherits.
 nimble install age
 ```
 
-There are pre-build binaries on [GitHub releases](https://github.com/attakei/age/releases).
-You can download and use it directly without Rust environment.
+You can also from these:
+
+- Download directly from [GitHub releases](https://github.com/attakei/age/releases).
+- Use aqua with custom registry.
 
 ## Usage
 
