@@ -2,7 +2,7 @@ import std/os
 
 # Package
 
-version = "0.10.1"
+version = "0.10.2"
 author = "Kazuya Takei"
 description = "Portable version-bumping tool"
 license = "Apache-2.0"

@@ -1,8 +1,14 @@
 # Changelog
 
+## v0.10.2 - 2025-05-27 (Asia/Tokyo)
+
+### Fix
+
+- Correct version text when called `--version`
+
 ## v0.10.1 - 2025-05-27 (Asia/Tokyo)
 
-## Misc
+### Misc
 
 - Mark for aqua registry.
 

@@ -32,4 +32,4 @@ tasks:
       LEVEL: '{{index .MATCH 0}}'
     cmds:
       - 'nimble run -- {{.LEVEL}}'
-      - 'uv sync'  # To write out as lock-file
+      - 'uv sync --all-groups --all-extras'  # To write out as lock-file
