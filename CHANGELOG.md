@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.10.1 - 2025-05-27 (Asia/Tokyo)
+
+## Misc
+
+- Mark for aqua registry.
+
 ## v0.10.0 - 2025-05-25 (Asia/Tokyo)
 
 ### Features

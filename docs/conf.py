@@ -5,7 +5,7 @@
 project = "age"
 copyright = "2024, attakei.net"
 author = "Kazuya Takei"
-release = "0.10.0"
+release = "0.10.1"
 
 # -- General configuration
 extensions = [
