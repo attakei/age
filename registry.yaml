@@ -8,6 +8,9 @@ packages:
       - version_constraint: Version == "v0.1.0"
         asset: gazer-{{.Version}}_{{.OS}}.{{.Format}}
         format: zip
+        files:
+          - name: age
+            src: gazer-{{.Version}}_{{.OS}}/gazer
         replacements:
           darwin: macosx
         supported_envs:
@@ -17,6 +20,9 @@ packages:
       - version_constraint: semver("<= 0.7.0")
         asset: age-{{.Version}}_{{.OS}}.{{.Format}}
         format: zip
+        files:
+          - name: age
+            src: age-{{.Version}}_{{.OS}}/age
         replacements:
           darwin: macosx
         supported_envs:
