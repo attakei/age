@@ -21,6 +21,8 @@ jobs:
         with:
           aqua_version: v2.43.1
           enable_aqua_install: false
-      - name: 'Verify registry that we can install age.'
+      - name: 'Verify registry with policy that we can install age.'
         working-directory: '.github/envs/check-for-aqua'
-        run: 'aqua --log-level=DEBUG install'
+        run: |
+          aqua --log-level=DEBUG policy allow
+          aqua --log-level=DEBUG install
