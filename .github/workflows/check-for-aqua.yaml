@@ -7,6 +7,7 @@ on:
     tags-ignore:
       - '**'
     paths:
+      - '.github/envs/check-for-aqua/*'
       - '.github/workflows/check-for-aqua.yaml'
       - 'aqua/**.yaml'
   workflow_dispatch:
@@ -19,3 +20,7 @@ jobs:
       - uses: aquaproj/aqua-installer@9ebf656952a20c45a5d66606f083ff34f58b8ce0 # v4.0.0
         with:
           aqua_version: v2.43.1
+          enable_aqua_install: false
+      - name: 'Verify registry that we can install age.'
+        working-directory: '.github/envs/check-for-aqua'
+        run: 'aqua --log-level=DEBUG install'
