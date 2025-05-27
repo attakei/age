@@ -7,7 +7,7 @@ on:
     tags-ignore:
       - '**'
     paths:
-      - 'registry.yaml'
+      - '.github/workflows/check-for-aqua.yaml'
       - 'aqua/**.yaml'
   workflow_dispatch:
 
