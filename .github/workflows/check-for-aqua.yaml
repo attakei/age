@@ -21,6 +21,12 @@ jobs:
         with:
           aqua_version: v2.43.1
           enable_aqua_install: false
+      - name: 'Check raised error when call install without policy'
+        working-directory: '.github/envs/check-for-aqua'
+        shell: bash
+        run: |
+          set -e
+          ! aqua --log-level=DEBUG install
       - name: 'Verify registry with policy that we can install age.'
         working-directory: '.github/envs/check-for-aqua'
         run: |
