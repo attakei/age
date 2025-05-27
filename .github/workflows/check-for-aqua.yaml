@@ -14,7 +14,13 @@ on:
 
 jobs:
   validate-registry:
-    runs-on: 'ubuntu-latest'
+    runs-on: ${{ matrix.vm }}
+    strategy:
+      matrix:
+        vm:
+          - ubuntu-latest
+          - macos-latest
+          - windows-latest
     steps:
       - uses: 'actions/checkout@v4'
       - uses: aquaproj/aqua-installer@9ebf656952a20c45a5d66606f083ff34f58b8ce0 # v4.0.0
