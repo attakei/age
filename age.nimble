@@ -13,7 +13,7 @@ bin = @["age"]
 
 # Dependencies
 
-requires "nim >= 2.0.0"
+requires "nim >= 2.0.16"
 
 requires "chronicles >= 0.12.4"
 requires "cligen >= 1.5.0"

@@ -39,8 +39,7 @@ jobs:
     strategy:
       matrix:
         nim-version:
-          - '2.0.0'
-          - '2.0.14'
+          - '2.0.16'
           - '2.2.0'
           - '2.2.2'
     steps:
@@ -72,7 +71,8 @@ jobs:
           - ubuntu-latest
           - windows-latest
         nim-version:
-          - '2.0.0'
+          - '2.0.16'
+          - '2.2.0'
           - '2.2.2'
     steps:
       - uses: 'actions/checkout@v4'
