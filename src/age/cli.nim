@@ -1,6 +1,6 @@
 ##[CLI subcommand works.
 ]##
-import std/[paths, sequtils, tables]
+import std/[paths, sequtils]
 import chronicles
 import semver
 import ./[config, engine, info, init, versioning]
