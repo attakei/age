@@ -55,13 +55,12 @@ proc parseConfig*(filePath: string, route: seq[string]): Config =
 proc autoConfig*(): tuple[obj: Config, path: Path, workDir: Path] =
   ##[Resolve valid config path and parse config.
   ]##
-  let fileCandicates =
-    @[
-      (Path("age.toml"), @[]),
-      (Path(".age.toml"), @[]),
-      (Path("pyproject.toml"), @["tool", "age"]),
-      (Path("Cargo.toml"), @["package", "metadata", "age"]),
-    ]
+  let fileCandicates = @[
+    (Path("age.toml"), @[]),
+    (Path(".age.toml"), @[]),
+    (Path("pyproject.toml"), @["tool", "age"]),
+    (Path("Cargo.toml"), @["package", "metadata", "age"]),
+  ]
   var workDir = paths.getCurrentDir().Path
   while true:
     for c in fileCandicates:

@@ -4,8 +4,7 @@ import std/[paths, sequtils]
 import mustache
 import ./[config, versioning]
 
-const DISPLAY_TEMPLATE =
-  """
+const DISPLAY_TEMPLATE = """
 # Workspace
 
 - Root: {{ workspace_root }}

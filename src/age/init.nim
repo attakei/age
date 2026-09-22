@@ -4,20 +4,17 @@ import std/[paths, strformat, strutils, tables]
 import mustache
 
 const
-  TEMPLATE_BASE =
-    """
+  TEMPLATE_BASE = """
 current_version = "{{ current_version }}"
 """
   TEMPLATE_PRESET = {
-    "rust":
-      """
+    "rust": """
 [[files]]
 path = "Cargo.toml"
 search = "version = \"{{current_version}}\""
 replace = "version = \"{{new_version}}\""
 """,
-    "python":
-      """
+    "python": """
 [[files]]
 path = "pyproject.toml"
 search = "version = \"{{current_version}}\""

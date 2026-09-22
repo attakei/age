@@ -11,16 +11,14 @@ test "initContext":
   let now = initDateTime(4, mMar, 2012, 5, 6, 7)
   let ctx = initContext(now)
   ctx["version"] = "v0.1.0"
-  let tmpl =
-    """
+  let tmpl = """
 {{version}}
 {{#sameLengthChars}}=@{{version}}{{/sameLengthChars}}
 
 {{nowFormat.dateISO}}
 """
   check(
-    tmpl.render(ctx) ==
-      """
+    tmpl.render(ctx) == """
 v0.1.0
 ======
 
