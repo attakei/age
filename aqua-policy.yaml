@@ -5,9 +5,15 @@
 registries:
   - type: standard
     ref: semver(">= 3.0.0")
+  - name: nimble-tools
+    type: github_content
+    repo_owner: attakei
+    repo_name: nimble-tools
+    path: registry.yaml
   - name: local
     type: local
     path: registry.yaml
 packages:
   - registry: standard
+  - registry: nimble-tools
   - registry: local

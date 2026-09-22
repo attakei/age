@@ -15,7 +15,6 @@ tasks:
     desc: 'Setup workspace'
     cmds:
       - 'nimble install -d'
-      - 'nimble install nph'
       - 'uv sync --frozen'
       - 'lefthook install'
   verify:

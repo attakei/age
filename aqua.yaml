@@ -10,6 +10,12 @@
 registries:
 - type: standard
   ref: v4.565.0 # renovate: depName=aquaproj/aqua-registry
+- name: nimble-tools
+  type: github_content
+  repo_owner: attakei
+  repo_name: nimble-tools
+  path: registry.yaml
+  ref: v0.0.20260921
 - name: local
   type: local
   path: registry.yaml
@@ -19,3 +25,7 @@ packages:
 - name: go-task/task@v3.53.1
 - name: attakei/age@v0.10.2
   registry: local
+- name: nim-lang/langserver@v1.14.0
+  registry: nimble-tools
+- name: arnetheduck/nph@v0.7.0
+  registry: nimble-tools
