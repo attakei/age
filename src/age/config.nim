@@ -1,7 +1,7 @@
 ##[Configuration manager.
 ]##
-import std/[dirs, logging, os, paths, re, tables]
-import parsetoml, semver
+import std/[dirs, os, paths, re, tables]
+import chronicles, parsetoml, semver
 
 type
   Config* = ref object ##[Configuration properties.
@@ -70,10 +70,10 @@ proc autoConfig*(): tuple[obj: Config, path: Path, workDir: Path] =
       let config = parseConfig(path.string, c[1])
       return (config, c[0], workDir)
     if dirExists(workDir / ".git".Path):
-      debug("This may be project root.")
+      debug "Handle as project root", dir = workDir.string
       break
     if isRootDir(workDir):
-      debug("THis is root directory of system.")
+      debug "It reached to system's root directory"
       break
     workDir = workDir.parentDir
   stderr.writeLine("Workspace is not found.")

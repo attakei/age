@@ -1,11 +1,8 @@
 ##[Core engine to convert files.
 ]##
 import
-  std/[
-    asyncdispatch, asyncfile, hashes, logging, nre, paths, strformat, strutils, tables,
-    times,
-  ]
-import mustache, semver
+  std/[asyncdispatch, asyncfile, hashes, nre, paths, strformat, strutils, tables, times]
+import chronicles, mustache, semver
 import ./[config, templating]
 
 type
@@ -70,10 +67,10 @@ proc run*(self: Engine): int =
   ##[Works main procedure to edit targets.
   ]##
   result = 1
-  info(fmt"Updating v{self.currentVersion} -> v{self.nextVersion}")
-  info(fmt"Apply {self.rules.len} rules.")
+  info "Updating version",
+    frm = self.currentVersion, to = self.nextVersion, rules = self.rules.len
   for target, rules in self.rules.pairs:
-    info(fmt"Target: {target.string}")
+    info "Editing content", target = target.string
     var content: string
     block:
       let file = openAsync(target.string, fmRead)

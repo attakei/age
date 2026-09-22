@@ -1,12 +1,13 @@
 ##[CLI subcommand works.
 ]##
-import std/[logging, paths, sequtils, tables]
+import std/[paths, sequtils, tables]
+import chronicles
 import semver
 import ./[config, engine, info, init, versioning]
 
 proc info*(): int =
   ## Display config.
-  debug("Call 'info' command.")
+  debug "Start command", command = "info"
   result = 1
   let conf = autoConfig()
   let workspace = newWorkspace(conf[0], conf[1], conf[2])
@@ -14,7 +15,7 @@ proc info*(): int =
 
 proc update*(args: seq[string]): int =
   ## Update target specified version.
-  debug("Call 'update' command.")
+  debug "Start command", command = "update"
   result = 1
   let conf = autoConfig()
   let nextVersion = parseVersion(args[0])
@@ -23,7 +24,7 @@ proc update*(args: seq[string]): int =
 
 proc major*(): int =
   ## Update target for "major" level updated version.
-  debug("Call 'major' command.")
+  debug "Start command", command = "major"
   result = 1
   let conf = autoConfig()
   let engine = newEngine(conf[0], conf[0].currentVersion.newMajorVersion)
@@ -31,7 +32,7 @@ proc major*(): int =
 
 proc minor*(): int =
   ## Update target for "minor" level updated version.
-  debug("Call 'minor' command.")
+  debug "Start command", command = "minor"
   result = 1
   let conf = autoConfig()
   let engine = newEngine(conf[0], conf[0].currentVersion.newMinorVersion)
@@ -39,7 +40,7 @@ proc minor*(): int =
 
 proc patch*(): int =
   ## Update target for "patch" level updated version.
-  debug("Call 'patch' command.")
+  debug "Start command", command = "patch"
   result = 1
   let conf = autoConfig()
   let engine = newEngine(conf[0], conf[0].currentVersion.newPatchVersion)
@@ -47,7 +48,7 @@ proc patch*(): int =
 
 proc init*(preset: seq[string] = @[], args: seq[string]): int =
   ## Create configuration file.
-  debug("Call 'init' command.")
+  debug "Start command", command = "init"
   result = 1
   let presets = concat(preset, args)
   result = createConfig(paths.getCurrentDir() / ".age.toml".Path, presets)
