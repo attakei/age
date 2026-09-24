@@ -20,7 +20,7 @@ jobs:
           policy_allow: 'true'
       - name: 'Cache Nim resources'
         id: cache_nim
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: |
             ~/.choosenim
@@ -51,7 +51,7 @@ jobs:
           sudo apt install -y libpcre3
       - name: 'Cache Nim resources'
         id: cache_nim
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: |
             ~/.choosenim
@@ -83,7 +83,7 @@ jobs:
         if: ${{ matrix.os == 'ubuntu-latest' }}
       - name: 'Cache Nim resources'
         id: cache_nim
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: |
             ~/.choosenim
