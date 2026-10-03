@@ -1,6 +1,6 @@
 ##[CLI subcommand works.
 ]##
-import std/[logging, paths, sequtils, tables]
+import std/[logging, paths, sequtils]
 import semver
 import ./[config, engine, info, init, versioning]
 
