@@ -23,11 +23,15 @@ jobs:
           - macos-latest
           - windows-latest
     steps:
+      - name: 'Install libraries'
+        run: |
+          sudo apt update
+          sudo apt install -y libpcre3
+        if: ${{ matrix.vm == 'ubuntu-latest' }}
       - uses: 'actions/checkout@v4'
       - uses: aquaproj/aqua-installer@11dd79b4e498d471a9385aa9fb7f62bb5f52a73c  # v4.0.4
         with:
           aqua_version: v2.55.0
-          policy_allow: 'true'
           enable_aqua_install: false
       - name: 'Check raised error when call install without policy'
         working-directory: '.github/envs/check-for-aqua'
@@ -40,6 +44,6 @@ jobs:
         run: |
           aqua --log-level=DEBUG policy allow
           aqua --log-level=DEBUG install
-          gigi nim
+          age --version
         env:
           AQUA_POLICY_CONFIG: './aqua-policy.yaml'

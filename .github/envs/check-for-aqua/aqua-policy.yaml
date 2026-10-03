@@ -5,6 +5,6 @@
 registries:
   - name: local
     type: local
-    path: ../../../aqua/registry.yaml
+    path: ../../../registry.yaml
 packages:
   - registry: local
