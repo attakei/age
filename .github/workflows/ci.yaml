@@ -29,8 +29,16 @@ jobs:
           - ubuntu-latest
           - windows-latest
         nim-version:
+          - '2.0.0'
+          - '2.0.14'
+          - '2.2.0'
           - '2.2.12'
     steps:
+      - name: 'Install libraries'
+        run: |
+          sudo apt update
+          sudo apt install -y libpcre3
+        if: ${{ matrix.os == 'ubuntu-latest' }}
       - uses: 'actions/checkout@v6'
       - uses: './.github/actions/setup-nim'
         with:
@@ -38,6 +46,35 @@ jobs:
       - run: |
           nimble build -Y
           nimble test -Y
+  e2e:
+    needs: ['lint']
+    runs-on: '${{ matrix.os }}'
+    strategy:
+      matrix:
+        os:
+          - ubuntu-latest
+          - windows-latest
+        nim-version:
+          - '2.0.0'
+          - '2.2.2'
+    steps:
+      - uses: 'actions/checkout@v4'
+      - name: 'Install libraries'
+        run: |
+          sudo apt update
+          sudo apt install -y libpcre3
+        if: ${{ matrix.os == 'ubuntu-latest' }}
+      - uses: 'attakei/devkit/actions/setup-aqua@main'
+      - uses: './.github/actions/setup-nim'
+        with:
+          nim-version: ${{ matrix.nim-version }}
+      - name: 'Configure workspace'
+        run: |
+          nimble build -Y
+          uv sync --frozen
+      - name: 'Run tests'
+        run: |
+          uv run pytest
   docs-test:
     needs: ['lint']
     runs-on: ubuntu-latest

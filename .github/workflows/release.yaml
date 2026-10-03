@@ -93,3 +93,8 @@ jobs:
           prerelease: ${{ needs.setup.outputs.prerelease }}
           name: '${{ needs.setup.outputs.app_name }}-${{ needs.setup.outputs.version }}'
           body: 'Please see [changelogs](https://github.com/attakei/gigi/blob/${{ github.ref_name }}/CHANGES.md)'
+  deploy-docs:
+    if: ${{ github.event_name != 'workflow_dispatch' }}
+    needs: ['release']
+    uses: './.github/workflows/deploy-docs.yaml'
+    secrets: inherit
