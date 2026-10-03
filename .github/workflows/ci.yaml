@@ -34,15 +34,11 @@ jobs:
           - '2.2.0'
           - '2.2.12'
     steps:
-      - name: 'Install libraries'
-        run: |
-          sudo apt update
-          sudo apt install -y libpcre3
-        if: ${{ matrix.os == 'ubuntu-latest' }}
       - uses: 'actions/checkout@v6'
       - uses: './.github/actions/setup-nim'
         with:
           nim-version: ${{ matrix.nim-version }}
+      - uses: './.github/actions/setup-pcre'
       - run: |
           nimble build -Y
           nimble test -Y
@@ -59,15 +55,11 @@ jobs:
           - '2.2.2'
     steps:
       - uses: 'actions/checkout@v4'
-      - name: 'Install libraries'
-        run: |
-          sudo apt update
-          sudo apt install -y libpcre3
-        if: ${{ matrix.os == 'ubuntu-latest' }}
       - uses: 'attakei/devkit/actions/setup-aqua@main'
       - uses: './.github/actions/setup-nim'
         with:
           nim-version: ${{ matrix.nim-version }}
+      - uses: './.github/actions/setup-pcre'
       - name: 'Configure workspace'
         run: |
           nimble build -Y

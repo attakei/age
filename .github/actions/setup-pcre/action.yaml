@@ -1,0 +1,25 @@
+---
+name: 'Setup PCRE'
+description: 'Install PCRE runtime library that is loaded by std/re'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: 'Install libpcre3 (Linux)'
+      if: ${{ runner.os == 'Linux' }}
+      shell: bash
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y libpcre3
+    # std/re loads "pcre64.dll" on Windows (x64).
+    # Use libpcre-1.dll from MSYS2 (pre-installed on runner) and register it by that name.
+    - name: 'Install pcre64.dll from MSYS2 mingw64 (Windows)'
+      if: ${{ runner.os == 'Windows' }}
+      shell: pwsh
+      run: |
+        C:\msys64\usr\bin\pacman.exe -Sy --noconfirm --needed mingw-w64-x86_64-pcre
+        if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+        $dest = Join-Path $env:RUNNER_TEMP 'pcre'
+        New-Item -ItemType Directory -Force -Path $dest | Out-Null
+        Copy-Item 'C:\msys64\mingw64\bin\libpcre-1.dll' (Join-Path $dest 'pcre64.dll')
+        Add-Content -Path $env:GITHUB_PATH -Value $dest
