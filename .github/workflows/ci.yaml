@@ -38,7 +38,6 @@ jobs:
       - uses: './.github/actions/setup-nim'
         with:
           nim-version: ${{ matrix.nim-version }}
-      - uses: './.github/actions/setup-pcre'
       - run: |
           nimble build -Y
           nimble test -Y
@@ -59,7 +58,6 @@ jobs:
       - uses: './.github/actions/setup-nim'
         with:
           nim-version: ${{ matrix.nim-version }}
-      - uses: './.github/actions/setup-pcre'
       - name: 'Configure workspace'
         run: |
           nimble build -Y
