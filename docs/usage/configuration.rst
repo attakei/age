@@ -71,7 +71,30 @@ Flag to use regular expression (regex) when searching target.
 
 If it is ``true``, age search target using regex and replace text with captured text.
 
-.. note:: See it: https://docs.rs/regex/1.10.4/regex/
+Syntax of regex follows `nim-regex <https://nitely.github.io/nim-regex/regex.html#syntax>`_.
+It is similar to Rust's regex, and there are some differences from PCRE.
+
+- Named capture group must be written as ``(?P<name>...)``. ``(?<name>...)`` is not supported.
+- ``files[].replace`` can refer captured groups by ``$N`` (``N`` is 1-indexed number of group).
+  Named reference (e.g. ``$name``) is not supported.
+  If you want to write literal ``$``, use ``$$``.
+- Backreferences (``\1``), atomic groups and possessive quantifiers are not supported.
+
+.. code-block:: toml
+   :caption: Example of using captured text
+
+   [[files]]
+   path = "example.txt"
+   regex = true
+   search = """
+   version = '{{current_version}}'
+   hello (?P<name>.+)
+   """
+   replace = """
+   version = '{{new_version}}'
+   hello
+   from $1
+   """
 
 ``files[].replace``
 -------------------
