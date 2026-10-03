@@ -2,10 +2,9 @@
 ]##
 import
   std/[
-    asyncdispatch, asyncfile, hashes, logging, nre, paths, strformat, strutils, tables,
-    times,
+    asyncdispatch, asyncfile, hashes, logging, paths, strformat, strutils, tables, times
   ]
-import mustache, semver
+import mustache, regex, semver
 import ./[config, templating]
 
 type
@@ -84,8 +83,8 @@ proc run*(self: Engine): int =
       let replace = rule.replace.render(ctx)
       let search = rule.search.render(ctx)
       if rule.regex:
-        let regex = re(search)
-        content = content.replace(regex, replace)
+        let pattern = re2(search)
+        content = content.replace(pattern, replace)
       else:
         content = content.replace(search, replace)
     block:

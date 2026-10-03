@@ -5,10 +5,10 @@ path = "example.txt"
 regex = true
 search = """
 version = '{{current_version}}'
-hello (?<name>.+)
+hello (?P<name>.+)
 """
 replace = """
 version = '{{new_version}}'
 hello
-from $name
+from $1
 """
