@@ -1,3 +1,4 @@
+---
 name: 'Check as aqua custom registry'
 
 on:
@@ -7,16 +8,38 @@ on:
     tags-ignore:
       - '**'
     paths:
-      - 'registry.yaml'
+      - '.github/envs/check-for-aqua/*'
+      - '.github/workflows/check-for-aqua.yaml'
       - 'aqua/**.yaml'
   workflow_dispatch:
 
 jobs:
   validate-registry:
-    runs-on: 'ubuntu-latest'
+    runs-on: ${{ matrix.vm }}
+    strategy:
+      matrix:
+        vm:
+          - ubuntu-latest
+          - macos-latest
+          - windows-latest
     steps:
       - uses: 'actions/checkout@v4'
-      - uses: aquaproj/aqua-installer@9ebf656952a20c45a5d66606f083ff34f58b8ce0 # v4.0.0
+      - uses: aquaproj/aqua-installer@11dd79b4e498d471a9385aa9fb7f62bb5f52a73c  # v4.0.4
         with:
-          aqua_version: v2.55.3
+          aqua_version: v2.55.0
           policy_allow: 'true'
+          enable_aqua_install: false
+      - name: 'Check raised error when call install without policy'
+        working-directory: '.github/envs/check-for-aqua'
+        shell: bash
+        run: |
+          set -e
+          ! aqua --log-level=DEBUG install
+      - name: 'Verify registry with policy that we can install age.'
+        working-directory: '.github/envs/check-for-aqua'
+        run: |
+          aqua --log-level=DEBUG policy allow
+          aqua --log-level=DEBUG install
+          gigi nim
+        env:
+          AQUA_POLICY_CONFIG: './aqua-policy.yaml'

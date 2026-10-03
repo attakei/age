@@ -1,8 +1,9 @@
+---
 version: '3'
 
 includes:
   docs:
-    taskfile: 'https://github.com/attakei/workspace-configs.git//projects/sphinx-doc/Taskfile.yaml?tag=v0.4.0'
+    taskfile: 'https://github.com/attakei/workspace-configs.git//projects/sphinx-doc/Taskfile.yaml?tag=v0.7.2'
     vars:
       RUN_PYTHON: 'uv run'
       SPHINX_ROOT_DIR: 'docs'
@@ -17,18 +18,14 @@ tasks:
       - 'nimble install -d'
       - 'uv sync --frozen'
       - 'lefthook install'
-  verify:
-    desc: 'Verify environment by all procs'
+  setup-ci:
+    desc: 'Setup workspace'
     cmds:
-      - 'lefthook run pre-commit --all-files'
-      - 'nimble test'
-      - 'uv run pytest'
-      - task: 'docs:build-linkcheck'
-      - task: 'docs:build-dirhtml'
+      - 'uv sync --frozen --group=lint'
   release-*:
-    desc: 'Run release process'
+    desc: 'Run edit to update version'
     vars:
       LEVEL: '{{index .MATCH 0}}'
     cmds:
       - 'nimble run -- {{.LEVEL}}'
-      - 'uv sync --all-groups --all-extras'  # To write out as lock-file
+      - 'uv sync --all-groups'  # To write out as lock-file
