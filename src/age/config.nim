@@ -1,7 +1,7 @@
 ##[Configuration manager.
 ]##
-import std/[dirs, logging, os, paths, re, tables]
-import parsetoml, semver
+import std/[dirs, logging, os, paths, tables]
+import parsetoml, regex, semver
 
 type
   Config* = ref object ##[Configuration properties.
@@ -28,7 +28,7 @@ proc parseFileConfig(table: TomlTableRef): FileConfig =
   if "regex" in table:
     result.regex = table["regex"].getBool
     # TODO: Raise human-readable exception.
-    let _ = re(result.search)
+    let _ = re2(result.search)
 
 proc parseConfig(table: TomlTableRef): Config =
   ##[Create coinfiguration object from parsed toml settings.
