@@ -1,5 +1,23 @@
 # Changelog
 
+## v0.11.0 - 2026-10-04 (Asia/Tokyo)
+
+### Breaking changes
+
+- Change regular expression engine from PCRE to [nim-regex](https://github.com/nitely/nim-regex).
+  - Named capture group must be written as `(?P<name>...)`. `(?<name>...)` is not supported.
+  - Replacement text supports only `$N` style references. Named references (e.g. `$name`) are not supported.
+  - PCRE specific syntaxes (backreferences, atomic groups, possessive quantifiers and others) are not supported.
+  - `$` matches only end of text. Use `(?m)` for line-based matching.
+  - `\d`, `\w` and `\b` are Unicode-aware.
+
+### Misc
+
+- Remove runtime dependency of PCRE library.
+- Use aqua to manage development tools.
+- Restructure workflows of GitHub Actions.
+- Update dependencies for development.
+
 ## v0.10.2 - 2025-05-27 (Asia/Tokyo)
 
 ### Fix
