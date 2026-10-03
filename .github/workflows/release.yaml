@@ -1,0 +1,100 @@
+---
+name: 'Release binaries'
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Emulate version (require "v" prefix)'
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  setup:
+    runs-on: 'ubuntu-latest'
+    outputs:
+      version: '${{ steps.vars.outputs.version }}'
+      app_name: '${{ steps.vars.outputs.app_name }}'
+      prerelease: '${{ steps.vars.outputs.prerelease }}'
+    steps:
+      - name: 'Configure variables'
+        id: vars
+        run: |
+          ref_name="${{ inputs.version || github.ref_name }}"
+          version="${ref_name##*/}"
+          # Treat as pre-release when the PATCH part and after (as semver) is not purely numeric
+          patch_and_after="$(echo "${version#v}" | cut -d. -f3-)"
+          if [[ "${patch_and_after}" =~ ^[0-9]+$ ]]; then
+            prerelease=false
+          else
+            prerelease=true
+          fi
+          {
+            echo "version=${version}"
+            echo "app_name=${{ github.event.repository.name }}"
+            echo "prerelease=${prerelease}"
+          } >> "$GITHUB_OUTPUT"
+  build:
+    needs: ['setup']
+    runs-on: ${{ matrix.vm }}
+    env:
+      package_name: '${{ needs.setup.outputs.app_name }}-${{ needs.setup.outputs.version }}'
+      dist_name: '${{ needs.setup.outputs.app_name }}-${{ needs.setup.outputs.version }}_${{ matrix.os_name }}_${{ matrix.cpu_name }}'
+    strategy:
+      matrix:
+        include:
+          - vm: ubuntu-latest
+            os_name: 'linux'
+            cpu_name: 'x86-64'
+          - vm: macos-latest
+            os_name: macos
+            cpu_name: 'arm64'
+          - vm: windows-latest
+            os_name: windows
+            cpu_name: 'x86-64'
+    steps:
+      - uses: 'actions/checkout@v6'
+      - uses: './.github/actions/setup-nim'
+      - name: 'Build and bundle'
+        run: |
+          nimble build -d:release -Y
+          nimble bundle
+      - name: 'Make archive'
+        uses: thedoctor0/zip-release@master
+        with:
+          type: zip
+          directory: 'dist'
+          filename: '${{ env.dist_name }}.zip'
+      - uses: actions/upload-artifact@v4
+        with:
+          name: 'release-${{ env.dist_name }}'
+          path: 'dist/${{ env.dist_name }}.zip'
+  release:
+    if: ${{ github.event_name != 'workflow_dispatch' }}
+    runs-on: ubuntu-latest
+    needs: ['setup', 'build']
+    steps:
+      - uses: 'actions/checkout@v6'
+      - uses: actions/download-artifact@v4
+        with:
+          path: 'dist'
+          merge-multiple: true
+      - uses: ncipollo/release-action@v1
+        with:
+          artifacts: 'dist/*'
+          draft: false
+          tag: ${{ github.ref }}
+          prerelease: ${{ needs.setup.outputs.prerelease }}
+          name: '${{ needs.setup.outputs.app_name }}-${{ needs.setup.outputs.version }}'
+          body: 'Please see [changelogs](https://github.com/attakei/gigi/blob/${{ github.ref_name }}/CHANGES.md)'
+  deploy-docs:
+    if: ${{ github.event_name != 'workflow_dispatch' }}
+    needs: ['release']
+    uses: './.github/workflows/deploy-docs.yaml'
+    secrets: inherit

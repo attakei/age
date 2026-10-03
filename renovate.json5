@@ -11,6 +11,10 @@
     "github-actions",
     "custom.jsonata"
   ],
+  "timezone": "Asia/Tokyo",
+  // Run per month
+  "schedule": "* * 21 * *",
+  "automerge": true,
   "packageRules": [
     {
       "matchPackageNames": ["attakei/workspace-configs"],
