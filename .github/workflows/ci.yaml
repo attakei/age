@@ -71,7 +71,7 @@ jobs:
       - name: 'Configure workspace'
         run: |
           nimble build -Y
-          uv sync --frozen
+          uv sync --frozen --group=test
       - name: 'Run tests'
         run: |
           uv run pytest
