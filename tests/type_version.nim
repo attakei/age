@@ -34,3 +34,13 @@ suite "Version type itself":
     check $version.incrementMinor(keepSuffix = false) == "1.3.0"
     check $version.incrementPatch == "1.2.4a1"
     check $version.incrementPatch(keepSuffix = false) == "1.2.4"
+
+  test "parse version text":
+    block:
+      let version = parseVersion("v1.2.3dev1")
+      check version.major == 1
+      check version.minor == 2
+      check version.patch == 3
+      check version.prefix == "v"
+      check version.suffix == "dev1"
+    check parseVersion("version-2.3.4rc1").semver == "2.3.4"
