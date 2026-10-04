@@ -1,5 +1,5 @@
 version = 1
-revision = 3
+revision = 5
 requires-python = ">=3.13"
 
 [[package]]
@@ -42,7 +42,7 @@ test = [
 [package.metadata.requires-dev]
 dev = [
     { name = "doc8", specifier = ">=1.1.2" },
-    { name = "esbonio", specifier = "~=2.0.0" },
+    { name = "esbonio", specifier = "~=2.1.0" },
     { name = "myst-parser", specifier = "~=5.0.0" },
     { name = "piccolo-theme", specifier = "~=0.24.0" },
     { name = "pytest", specifier = "~=9.0.0" },
@@ -208,7 +208,7 @@ wheels = [
 
 [[package]]
 name = "esbonio"
-version = "2.0.0"
+version = "2.1.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "aiosqlite" },
@@ -217,9 +217,9 @@ dependencies = [
     { name = "pygls" },
     { name = "websockets" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/d2/59/1ccb85a7d59760f62971e29db64a342fc5cf52fa4484394c90cac07190c1/esbonio-2.0.0.tar.gz", hash = "sha256:fa75ce74a7a395836a0d401a833ce25d5e967007c5b7531a5748decd40ba6b7d", size = 126080, upload-time = "2026-04-11T17:17:34.306Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/68/e6/b40e53f2efc28fc18319795800cd3cc1dca6215cf34b55d0183361adebff/esbonio-2.1.0.tar.gz", hash = "sha256:7fd6973616c88689800ff3de17ce929c6dfe34fedf6e2c142e2b7ceab8b2ebbd", size = 129953, upload-time = "2026-06-28T19:30:12.98Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/ce/f9/ac3dfd835e7fb8a3cc92f594ee71a6564f105fe7787ebc6ebdb1ef6e22cd/esbonio-2.0.0-py3-none-any.whl", hash = "sha256:99836223d200a9ec23118193eebd23f8a36579ea8c8dbfc9300a9582cc1d7b79", size = 120484, upload-time = "2026-04-11T17:17:32.181Z" },
+    { url = "https://files.pythonhosted.org/packages/a9/de/776ecca7053984f86e2d9f2447aa7bb06812cc0d92d0459d2fd20a35006b/esbonio-2.1.0-py3-none-any.whl", hash = "sha256:15241d3c6efe5931c0c91acf61afe8bd8059b897e91cd6b737cc1891ba91134f", size = 124181, upload-time = "2026-06-28T19:30:11.535Z" },
 ]
 
 [[package]]
