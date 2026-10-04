@@ -24,7 +24,7 @@ jobs:
           - macos-latest
           - windows-latest
     steps:
-      - uses: 'actions/checkout@v4'
+      - uses: 'actions/checkout@v7'
       - uses: './.github/actions/setup-pcre'
       - uses: aquaproj/aqua-installer@96a9bc20066c5bf5e275b41019cfc165b25f4e2e  # v4.0.5
         with:
