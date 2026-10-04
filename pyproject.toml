@@ -18,7 +18,7 @@ dev = [
     { include-group = "lint" },
     { include-group = "test" },
     "esbonio~=0.16.4",
-    "sphinx-autobuild~=2024.10.3",
+    "sphinx-autobuild~=2025.8.25",
 ]
 docs = [
     "sphinx>=9",
