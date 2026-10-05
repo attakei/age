@@ -70,3 +70,8 @@ replace = """
 - Changelog is https://github.com/attakei/age/blob/v{{new_version}}/CHANGELOG.md
 - Source changes is https://github.com/attakei/age/compare/v{{current_version}}...v{{new_version}}
 """
+
+[[files]]
+path = ".github/envs/check-for-aqua/aqua.yaml"
+search = "- name: attakei/age@v{{current_version}}"
+replace = "- name: attakei/age@v{{new_version}}"
