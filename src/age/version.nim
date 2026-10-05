@@ -109,7 +109,7 @@ proc findNumberString(text: string, begin: int, endByAnyChar: bool = true): int 
   var
     idx = begin
     hasNum = false
-  while true:
+  while idx < len(text):
     if text[idx] == '.':
       break
     if '0' <= text[idx] and text[idx] <= '9':
