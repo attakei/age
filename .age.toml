@@ -71,7 +71,8 @@ replace = """
 - Source changes is https://github.com/attakei/age/compare/v{{current_version}}...v{{new_version}}
 """
 
-[[files]]
-path = ".github/envs/check-for-aqua/aqua.yaml"
-search = "- name: attakei/age@v{{current_version}}"
-replace = "- name: attakei/age@v{{new_version}}"
+# TODO: It want to update after release.
+# [[files]]
+# path = ".github/envs/check-for-aqua/aqua.yaml"
+# search = "- name: attakei/age@v{{current_version}}"
+# replace = "- name: attakei/age@v{{new_version}}"
