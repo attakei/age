@@ -74,7 +74,7 @@ proc autoConfig*(): tuple[obj: Config, path: Path, workDir: Path] =
       debug("This may be project root.")
       break
     if isRootDir(workDir):
-      debug("THis is root directory of system.")
+      debug("This is root directory of system.")
       break
     workDir = workDir.parentDir
   stderr.writeLine("Workspace is not found.")
