@@ -5,7 +5,7 @@ import
     asyncdispatch, asyncfile, hashes, logging, paths, strformat, strutils, tables, times
   ]
 import mustache, regex
-import ./[config, templating, version]
+import ./[config, templating, versioning]
 
 type
   Engine = ref object

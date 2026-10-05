@@ -2,7 +2,7 @@
 ]##
 import std/[dirs, logging, os, paths, tables]
 import parsetoml, regex
-import ./version
+import ./versioning
 
 type
   Config* = ref object ##[Configuration properties.

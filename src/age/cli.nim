@@ -1,7 +1,7 @@
 ##[CLI subcommand works.
 ]##
 import std/[logging, paths, sequtils]
-import ./[config, engine, info, init, version]
+import ./[config, engine, info, init, versioning]
 
 proc info*(): int =
   ## Display config.

@@ -1,5 +1,5 @@
 import std/unittest
-import age/version
+import age/versioning
 include age/engine
 
 test "Initialized state of engine":

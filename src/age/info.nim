@@ -2,7 +2,7 @@
 ]##
 import std/[paths, sequtils]
 import mustache
-import ./[config, version]
+import ./[config, versioning]
 
 const DISPLAY_TEMPLATE = """
 # Workspace

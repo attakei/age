@@ -1,5 +1,5 @@
 import std/unittest
-import age/version
+import age/versioning
 
 suite "Version type itself":
   test "initialize":
