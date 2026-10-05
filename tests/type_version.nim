@@ -50,3 +50,5 @@ suite "Version type itself":
     check parseVersion("2.3.4a1").semver == "2.3.4"
     check parseVersion("2.3.4a1").prefix == ""
     check parseVersion("2.3.4a1").suffix == "a1"
+    expect ValueError:
+      discard parseVersion("dev")

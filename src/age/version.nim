@@ -131,6 +131,8 @@ proc parseVersion*(text: string): Version =
   # Find prefix
   while text[idxEnd] < '0' or '9' < text[idxEnd]:
     idxEnd += 1
+    if len(text) == idxEnd:
+      raise newException(ValueError, "Text doesn't contain number chars")
   result.prefix = text.substr(idxBegin, idxEnd - 1)
   # Find semvers(major, minor, patch)
   idxBegin = idxEnd
