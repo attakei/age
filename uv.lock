@@ -1,10 +1,10 @@
 version = 1
-revision = 5
+revision = 3
 requires-python = ">=3.13"
 
 [[package]]
 name = "age-cli"
-version = "0.11.0"
+version = "0.12.0"
 source = { virtual = "." }
 
 [package.dev-dependencies]

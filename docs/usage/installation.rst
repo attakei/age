@@ -24,17 +24,17 @@ You can download and use from GitHub Releases.
 
         .. code:: console
 
-           curl -L https://github.com/attakei/age/releases/download/v0.11.0/age-v0.11.0_macos_arm64.zip | bsdtar x -
-           chmod +x age-v0.11.0/age
-           cp age-v0.11.0/age /path/to/bin/
+           curl -L https://github.com/attakei/age/releases/download/v0.12.0/age-v0.12.0_macos_arm64.zip | bsdtar x -
+           chmod +x age-v0.12.0/age
+           cp age-v0.12.0/age /path/to/bin/
 
     .. tab-item:: Linux
 
         .. code:: console
 
-           curl -L https://github.com/attakei/age/releases/download/v0.11.0/age-v0.11.0_linux_x86-64.zip | bsdtar x -
-           chmod +x age-v0.11.0/age
-           cp age-v0.11.0/age /path/to/bin/
+           curl -L https://github.com/attakei/age/releases/download/v0.12.0/age-v0.12.0_linux_x86-64.zip | bsdtar x -
+           chmod +x age-v0.12.0/age
+           cp age-v0.12.0/age /path/to/bin/
 
 Using aqua
 ----------

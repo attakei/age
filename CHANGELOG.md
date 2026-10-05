@@ -1,5 +1,22 @@
 # Changelog
 
+## v0.12.0 - 2026-10-05 (Asia/Tokyo)
+
+### Features
+
+- Support none-semantic versioning text for `current_version` and update argument.
+  - e.g. : `v1.0.1` (having prefix), `1.0.1rc1` (having prefix).
+  - To realize it, it defines custom versioning module instead of `semver`.
+
+### Misc
+
+- Documentation:
+  - Update dependencies.
+  - Explicit that CLI search `age.toml` to find config file.
+- Remove `semver` from dependenvcies.
+- Remove action to install PCRE library.
+- Update using workflows' actions.
+
 ## v0.11.0 - 2026-10-04 (Asia/Tokyo)
 
 ### Breaking changes
