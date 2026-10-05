@@ -15,7 +15,7 @@ bin = @["age"]
 
 requires "nim >= 2.0.0"
 
-requires "cligen >= 1.5.0"
+requires "confutils >= 0.1.1"
 requires "mustache >= 0.4.3"
 requires "parsetoml >= 0.7.2"
 requires "regex >= 0.26.3"

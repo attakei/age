@@ -1,7 +1,33 @@
 ##[CLI subcommand works.
 ]##
 import std/[logging, paths, sequtils]
+import confutils
 import ./[config, engine, info, init, versioning]
+
+type
+  Command* = enum
+    info = "Display config"
+    update = "Update target specified version"
+    major = "Update target for \"major\" level updated version"
+    minor = "Update target for \"minor\" level updated version"
+    patch = "Update target for \"patch\" level updated version"
+    init = "Create configuration file"
+
+  UpdateOptions* = object
+    args* {.argument, desc: "Version text to replace".}: seq[string]
+
+  InitOptions* = object
+    presets* {.name: "preset", desc: "List of presets".}: seq[string]
+    args* {.argument, desc: "List of presets".}: seq[string]
+
+  AppConf* = object
+    case command* {.command.}: Command
+    of update:
+      updateOpts* {.flatten.}: UpdateOptions
+    of init:
+      initOpts* {.flatten.}: InitOptions
+    of major, minor, patch, info:
+      discard
 
 proc info*(): int =
   ## Display config.
