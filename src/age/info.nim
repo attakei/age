@@ -37,9 +37,9 @@ proc displayInfo*(self: Workspace): int =
   ctx["workspace_root"] = self.root
   ctx["workspace_file"] = self.file
   ctx["current_version"] = self.config.currentVersion
-  ctx["next_major"] = self.config.currentVersion.newMajorVersion
-  ctx["next_minor"] = self.config.currentVersion.newMinorVersion
-  ctx["next_patch"] = self.config.currentVersion.newPatchVersion
+  ctx["next_major"] = self.config.currentVersion.incrementMajor
+  ctx["next_minor"] = self.config.currentVersion.incrementMinor
+  ctx["next_patch"] = self.config.currentVersion.incrementPatch
   ctx["files"] = self.config.files.mapIt(it.path.string).deduplicate
   echo DISPLAY_TEMPLATE.render(ctx)
   result = 0

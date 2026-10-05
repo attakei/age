@@ -4,8 +4,8 @@ import
   std/[
     asyncdispatch, asyncfile, hashes, logging, paths, strformat, strutils, tables, times
   ]
-import mustache, regex, semver
-import ./[config, templating]
+import mustache, regex
+import ./[config, templating, versioning]
 
 type
   Engine = ref object
