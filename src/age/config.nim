@@ -1,7 +1,8 @@
 ##[Configuration manager.
 ]##
 import std/[dirs, logging, os, paths, tables]
-import parsetoml, regex, semver
+import parsetoml, regex
+import ./version
 
 type
   Config* = ref object ##[Configuration properties.

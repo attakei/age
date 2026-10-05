@@ -1,8 +1,7 @@
 ##[CLI subcommand works.
 ]##
 import std/[logging, paths, sequtils]
-import semver
-import ./[config, engine, info, init, versioning]
+import ./[config, engine, info, init, version]
 
 proc info*(): int =
   ## Display config.
@@ -26,7 +25,7 @@ proc major*(): int =
   debug("Call 'major' command.")
   result = 1
   let conf = autoConfig()
-  let engine = newEngine(conf[0], conf[0].currentVersion.newMajorVersion)
+  let engine = newEngine(conf[0], conf[0].currentVersion.incrementMajor)
   result = engine.run()
 
 proc minor*(): int =
@@ -34,7 +33,7 @@ proc minor*(): int =
   debug("Call 'minor' command.")
   result = 1
   let conf = autoConfig()
-  let engine = newEngine(conf[0], conf[0].currentVersion.newMinorVersion)
+  let engine = newEngine(conf[0], conf[0].currentVersion.incrementMajor)
   result = engine.run()
 
 proc patch*(): int =
@@ -42,7 +41,7 @@ proc patch*(): int =
   debug("Call 'patch' command.")
   result = 1
   let conf = autoConfig()
-  let engine = newEngine(conf[0], conf[0].currentVersion.newPatchVersion)
+  let engine = newEngine(conf[0], conf[0].currentVersion.incrementPatch)
   result = engine.run()
 
 proc init*(preset: seq[string] = @[], args: seq[string]): int =

@@ -55,4 +55,4 @@ suite "Test for parseConfig":
     """
     )
     expect ValueError:
-      let conf = parseConfig(table.getTable)
+      discard parseConfig(table.getTable)
