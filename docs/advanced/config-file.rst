@@ -10,9 +10,10 @@ Order of finding
 age check "these are exiets" and "this includes configuration of age".
 It use first valid file for configuration .
 
-1. ``.age.toml``
-2. ``Cargo.toml``
-3. ``pyproject.toml``
+1. ``age.toml``
+2. ``.age.toml``
+3. ``Cargo.toml``
+4. ``pyproject.toml``
 
 File and section
 ================
