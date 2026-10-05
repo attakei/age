@@ -33,7 +33,7 @@ proc minor*(): int =
   debug("Call 'minor' command.")
   result = 1
   let conf = autoConfig()
-  let engine = newEngine(conf[0], conf[0].currentVersion.incrementMajor)
+  let engine = newEngine(conf[0], conf[0].currentVersion.incrementMinor)
   result = engine.run()
 
 proc patch*(): int =
