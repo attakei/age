@@ -21,7 +21,7 @@ dev = [
     "sphinx-autobuild>=2024.10.3",
 ]
 docs = [
-    "sphinx~=9.0.0",
+    "sphinx~=9.2.0",
     "myst-parser~=5.0.0",
     "piccolo-theme~=0.24.0",
     "sphinxcontrib-asciinema>=0.4.2",
