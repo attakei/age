@@ -25,7 +25,7 @@ jobs:
           - windows-latest
     steps:
       - uses: 'actions/checkout@v7'
-      - uses: aquaproj/aqua-installer@96a9bc20066c5bf5e275b41019cfc165b25f4e2e  # v4.0.5
+      - uses: aquaproj/aqua-installer@b8be739961814ee66b9e0d505f4d5de0d2eff047  # v4.1.2
         with:
           aqua_version: v2.55.0
           enable_aqua_install: false
